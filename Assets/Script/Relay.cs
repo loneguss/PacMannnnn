@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using QFSW.QC;
+using TMPro;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
 using Unity.Networking.Transport.Relay;
@@ -13,6 +14,9 @@ using UnityEngine;
 
 public class Relay : NetworkBehaviour
 {
+    [SerializeField] private TMP_InputField _inputField;
+    
+    
     private async void Start()
     {
        await UnityServices.InitializeAsync();
@@ -20,7 +24,7 @@ public class Relay : NetworkBehaviour
     }
     
     [Command]
-    private async void CreateRelay()
+    public async void CreateRelay()
     {
         try
         {
@@ -44,11 +48,11 @@ public class Relay : NetworkBehaviour
     }
     
     [Command]
-    private async void JoinRelay(string joinCode)
+    public async void JoinRelay(string joinCode)
     {
         try
         {
-            JoinAllocation joinAllocation = await RelayService.Instance.JoinAllocationAsync(joinCode);
+            JoinAllocation joinAllocation = await RelayService.Instance.JoinAllocationAsync(_inputField.text);
             
             RelayServerData relayServerData = new RelayServerData(joinAllocation, "dtls");
             
