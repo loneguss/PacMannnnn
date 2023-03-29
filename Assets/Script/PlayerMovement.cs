@@ -1,40 +1,35 @@
+using System;
+using Unity.Netcode;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : NetworkBehaviour
 {
-    public float speed = 5f; // Pac-Man's speed
-    private Vector2 direction = Vector2.zero; // Pac-Man's current direction
+    public float spinSpeed = 100f;
+    public float moveSpeed = 5f;
+    private bool isSpinning = true;
 
     void Update()
     {
-        // Get input from arrow keys or WASD
-        float horizontalInput = Input.GetAxisRaw("Horizontal");
-        float verticalInput = Input.GetAxisRaw("Vertical");
+        if (!IsOwner) return;
+        
+        
+        if (Input.GetKey(KeyCode.Space))
+        {
+            isSpinning = false;
+        }
+        else
+        {
+            isSpinning = true;
 
-        // Set Pac-Man's direction based on input
-        if (horizontalInput > 0)
-        {
-            direction = Vector2.right;
         }
-        else if (horizontalInput < 0)
+            
+        if (isSpinning)
         {
-            direction = Vector2.left;
+            transform.Rotate(0f, 0f, spinSpeed * Time.deltaTime);
         }
-        else if (verticalInput > 0)
+        else
         {
-            direction = Vector2.up;
-        }
-        else if (verticalInput < 0)
-        {
-            direction = Vector2.down;
-        }
-
-        // Check for collisions with walls
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, 0.5f, LayerMask.GetMask("Wall"));
-        if (hit.collider == null)
-        {
-            // Move Pac-Man in the current direction
-            transform.position += (Vector3)(direction * speed * Time.deltaTime);
+            transform.Translate(Vector2.up * moveSpeed * Time.deltaTime);
         }
     }
 }
