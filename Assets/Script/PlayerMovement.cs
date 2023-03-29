@@ -7,6 +7,16 @@ public class PlayerMovement : NetworkBehaviour
     public float spinSpeed = 100f;
     public float moveSpeed = 5f;
     private bool isSpinning = true;
+    
+    //gun
+    private Gun _gun;
+
+    public override void OnNetworkSpawn()
+    {
+        _gun = GetComponent<Gun>();
+    }
+
+    
 
     void Update()
     {
@@ -20,7 +30,11 @@ public class PlayerMovement : NetworkBehaviour
         else
         {
             isSpinning = true;
-
+        }
+        
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            _gun.Shoot();
         }
             
         if (isSpinning)
