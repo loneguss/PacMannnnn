@@ -1,18 +1,12 @@
-using Unity.Netcode;
 using UnityEngine;
 
-public class PlayerMovement : NetworkBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     public float speed = 5f; // Pac-Man's speed
     private Vector2 direction = Vector2.zero; // Pac-Man's current direction
 
     void Update()
     {
-        if (!IsOwner)
-        {
-            return;
-        }
-        
         // Get input from arrow keys or WASD
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         float verticalInput = Input.GetAxisRaw("Vertical");
@@ -35,7 +29,12 @@ public class PlayerMovement : NetworkBehaviour
             direction = Vector2.down;
         }
 
-        // Move Pac-Man in the current direction
-        transform.position += (Vector3)(direction * speed * Time.deltaTime);
+        // Check for collisions with walls
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, 0.5f, LayerMask.GetMask("Wall"));
+        if (hit.collider == null)
+        {
+            // Move Pac-Man in the current direction
+            transform.position += (Vector3)(direction * speed * Time.deltaTime);
+        }
     }
 }
