@@ -26,10 +26,10 @@ public class Player : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SetTeamServerRpc(_team);
-        
-        
+
         if(!IsOwner) return;
+        SetTeamServerRpc(_team);
+
         playerName.Value = "Player:" + NetworkManager.Singleton.LocalClientId.ToString();
         _playerTeleport = GetComponent<PlayerTeleport>();
         playerBase = GameObject.FindWithTag("Base");
