@@ -21,11 +21,16 @@ public class Player : NetworkBehaviour
 
     [SerializeField] private string PlayerName;
 
-    private Team _team = Team.White;
+    [SerializeField] private Team _team = Team.White;
 
     // Start is called before the first frame update
     void Start()
     {
+        if (IsOwner)
+        {
+            FindObjectOfType<CameraFollow>().target = this.transform;
+        }
+        
         if (IsServer)
         {
             FindObjectOfType<Lobby>().ChangeMaxPlayerServerRpc();
@@ -60,6 +65,26 @@ public class Player : NetworkBehaviour
         des = playerBase.transform.position;
             
         GetComponent<PlayerMovement>().Teleporting(des);
+    }
+    
+    public void Spawn(Team t)
+    {
+        _playerTeleport.Teleport(playerBase.gameObject);
+
+        Vector3 des = new Vector3();
+        des = playerBase.transform.position;
+        GetComponent<PlayerMovement>().Teleporting(des);
+        if (IsServer)
+        {
+            StartCoroutine(SpawnTimer(t));
+        }
+
+    }
+
+    IEnumerator SpawnTimer(Team t)
+    {
+        yield return new WaitForSeconds(0.3f);
+        SetTeamServerRpc(t);
     }
 
     public string GetPlayerName()

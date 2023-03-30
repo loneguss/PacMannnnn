@@ -79,13 +79,11 @@ public class GameManager : NetworkBehaviour
             if (currentPlayer.GetPlayerTeam() == Player.Team.Red)
             {
                 currentPlayer.SetPlayerBase(redBase);
-                currentPlayer.Dead();
-               
-            }
+                currentPlayer.Spawn(Player.Team.Red); }
             else if (currentPlayer.GetPlayerTeam() == Player.Team.Blue)
             {
                 currentPlayer.SetPlayerBase(blueBase);
-                currentPlayer.Dead();
+                currentPlayer.Spawn(Player.Team.Blue);
             }
             Debug.Log(currentPlayer.GetPlayerName());
             
