@@ -93,7 +93,9 @@ public class PlayerMovement :  NetworkBehaviour
         {
             _gun.Shoot();
         }
-            
+
+        if (Input.GetKeyDown(KeyCode.E)) _gun.RemoveGunServerRpc();
+        
         if (isSpinning)
         {
             transform.Rotate(0f, 0f, spinSpeed * Time.deltaTime);
