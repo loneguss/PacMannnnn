@@ -14,6 +14,8 @@ public class ColliderTeleport : MonoBehaviour
     public bool Preserve_XAxis;
     public bool Preserve_YAxis;
     public bool Preserve_ZAxis;
+
+    public bool warp = false;
     
     public Player.Team Team;
 
@@ -23,6 +25,8 @@ public class ColliderTeleport : MonoBehaviour
     {
         //test
         collision.gameObject.GetComponent<Player>().SetTeamServerRpc(Team);
+        
+        if(warp == false) return;
         
         if (NetworkManager.Singleton == null || !NetworkManager.Singleton.IsListening)
         {
