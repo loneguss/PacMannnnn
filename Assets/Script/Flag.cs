@@ -5,10 +5,8 @@ using UnityEngine;
 public class Flag : NetworkBehaviour
 {
     public Player.Team team;
-    private Player _player;
     private void Start()
     {
-        _player = FindObjectOfType<Player>().GetComponent<Player>();
     }
 
     private void OnTriggerEnter2D(Collider2D col)

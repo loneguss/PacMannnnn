@@ -9,20 +9,16 @@ public class GrabFlag : NetworkBehaviour
     private Player _player;
     private PointCounter _pointCounter;
     private Flag _flag;
+    private GameManager _gameManager;
 
-    private NetworkVariable<bool> isGrab = new NetworkVariable<bool>();
-
-    public NetworkVariable<bool> IsGrab
-    {
-        get => isGrab;
-        set => isGrab = value;
-    }
+    private bool isGrab;
 
     // Start is called before the first frame update
     void Start()
     {
         _player = FindObjectOfType<Player>().GetComponent<Player>();
         _pointCounter = FindObjectOfType<PointCounter>().GetComponent<PointCounter>();
+        _gameManager = FindObjectOfType<GameManager>().GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -41,34 +37,36 @@ public class GrabFlag : NetworkBehaviour
             }
         }
 
-        if(col.CompareTag("FlagPoint") && isGrab.Value)
+        if(col.CompareTag("FlagPoint") && isGrab)
         {
             if (_player.GetPlayerTeam() == Player.Team.Red)
             {
                 GrabFlagServerRpc();
                 _pointCounter.FlagPointServerRpc(1, 0);
+                StartCoroutine(_gameManager.BlueFlagSpawn());
                 flagSprite.enabled = false;
             }
 
             if (_player.GetPlayerTeam() == Player.Team.Blue)
             {
                 GrabFlagServerRpc();
-                _pointCounter.FlagPointServerRpc(0, 1); 
+                _pointCounter.FlagPointServerRpc(0, 1);
+                StartCoroutine(_gameManager.RedFlagSpawn());
                 flagSprite.enabled = false;
             }
         }
         
     }
     
-    [ServerRpc]
+    [ServerRpc(RequireOwnership = false)]
     public void GrabFlagServerRpc()
     {
-        if (!flagSprite.enabled && isGrab.Value)
+        if (!flagSprite.enabled && isGrab)
         {
-            isGrab.Value = false;
+            isGrab = false;
             return;
         }
-        if (!isGrab.Value)
+        if (!isGrab)
         {
             if (_player.GetPlayerTeam() == Player.Team.Red)
             {
@@ -80,7 +78,7 @@ public class GrabFlag : NetworkBehaviour
             }
             
             flagSprite.enabled = true;
-            isGrab.Value = true;
+            isGrab = true;
         }
         else
         {
@@ -91,7 +89,7 @@ public class GrabFlag : NetworkBehaviour
     [ClientRpc]
     public void GrabFlagClientRpc(Color _color)
     {
-        if (!isGrab.Value)
+        if (!isGrab)
         {
             flagSprite.color = _color;
             flagSprite.enabled = true;
@@ -102,7 +100,7 @@ public class GrabFlag : NetworkBehaviour
     [ClientRpc]
     public void DropFlagClientRpc()
     {
+        isGrab = false;
         flagSprite.enabled = false;
-        isGrab.Value = false;
     }
 }

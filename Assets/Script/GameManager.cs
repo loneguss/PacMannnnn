@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Unity.Netcode;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -19,6 +20,7 @@ public class GameManager : NetworkBehaviour
     private Transform spawnBlueFlagTransform;
     
     private Transform spawnRedFlagTransform;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,6 +43,24 @@ public class GameManager : NetworkBehaviour
             spawnRedFlagTransform = Instantiate(redFlagRespawn);
             spawnRedFlagTransform.GetComponent<NetworkObject>().Spawn(true);
         }
+    }
+
+    public IEnumerator RedFlagSpawn()
+    {
+        yield return new WaitForSeconds(2f);
+        Debug.Log("Red Flag Spawned");
+        spawnRedFlagTransform = Instantiate(redFlagRespawn);
+        spawnRedFlagTransform.GetComponent<NetworkObject>().Spawn(true);
+    }
+    
+    
+    
+    public IEnumerator BlueFlagSpawn()
+    {
+        yield return new WaitForSeconds(2f);
+        Debug.Log("Blue Flag Spawned"); 
+        spawnBlueFlagTransform = Instantiate(blueFlagRespawn);
+        spawnBlueFlagTransform.GetComponent<NetworkObject>().Spawn(true);
     }
 
     [ClientRpc]
