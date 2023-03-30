@@ -35,4 +35,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SadHamster.unity
     guid: 29f97be137c450e43b1be2aa7333617c
+  - enabled: 1
+    path: Assets/Scenes/FinalMaii.unity
+    guid: 51808b2adf3303c4d95118f009d3f3d5
   m_configObjects: {}
