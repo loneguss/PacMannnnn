@@ -1,11 +1,14 @@
-using System;
+using System.Collections;
 using Unity.Netcode;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : NetworkBehaviour
 {
     [SerializeField] private GameObject scoreTeamText;
+    [SerializeField] private GameObject timeText;
+    
+    [SerializeField] private Transform blueFlagRespawn;
+    [SerializeField] private Transform redFlagRespawn;
 
     [SerializeField] private Transform greenFlagRespawn;
 
@@ -15,6 +18,8 @@ public class GameManager : NetworkBehaviour
         get => greenFlagRespawn;
         set => greenFlagRespawn = value;
     }
+    private Transform spawnBlueFlagTransform;
+    private Transform spawnRedFlagTransform;
 
     [SerializeField] private GameObject[] test;
 
@@ -35,26 +40,39 @@ public class GameManager : NetworkBehaviour
     {
         if (IsServer)
         {
-            scoreTeamText.SetActive(true);
-        }
-
-        if (Input.GetKeyDown(KeyCode.S) && IsServer)
-        {
-            spawnFlagTransform = Instantiate(greenFlagRespawn);
-            spawnFlagTransform.GetComponent<NetworkObject>().Spawn(true);
+            DisplayUIServerRpc();
         }
     }
 
+    public IEnumerator RedFlagSpawn()
+    {
+        yield return new WaitForSeconds(2f);
+        Debug.Log("Red Flag Spawned");
+        spawnRedFlagTransform = Instantiate(redFlagRespawn);
+        spawnRedFlagTransform.GetComponent<NetworkObject>().Spawn(true);
+    }
+    
+    public IEnumerator BlueFlagSpawn()
+    {
+        yield return new WaitForSeconds(2f);
+        Debug.Log("Blue Flag Spawned"); 
+        spawnBlueFlagTransform = Instantiate(blueFlagRespawn);
+        spawnBlueFlagTransform.GetComponent<NetworkObject>().Spawn(true);
+    }
+    
+    
+
     [ClientRpc]
-    public void DisplayScoreClientRpc()
+    public void DisplayUIClientRpc()
     {
         scoreTeamText.SetActive(true);
+        timeText.SetActive(true);
     }
     
     [ServerRpc(RequireOwnership = false)]
-    public void DisplayScoreServerRpc()
+    public void DisplayUIServerRpc()
     {
-        scoreTeamText.SetActive(true);
+        DisplayUIClientRpc();
     }
     
     [ServerRpc]
