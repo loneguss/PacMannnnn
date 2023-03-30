@@ -1,13 +1,9 @@
 using Unity.Netcode;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Flag : NetworkBehaviour
 {
     public Player.Team team;
-    private void Start()
-    {
-    }
 
     private void OnTriggerEnter2D(Collider2D col)
      {

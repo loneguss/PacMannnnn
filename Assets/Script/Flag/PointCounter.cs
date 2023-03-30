@@ -46,7 +46,7 @@ public class PointCounter : NetworkBehaviour
         team2ScoreText.text = team2Score.ToString();
 
         
-        _gameManager.DisplayScoreServerRpc();
-        _gameManager.DisplayScoreClientRpc();
+        _gameManager.DisplayUIServerRpc();
+        _gameManager.DisplayUIClientRpc();
     }
 }

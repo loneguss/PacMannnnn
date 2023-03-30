@@ -1,9 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Unity.Multiplayer.Samples.Utilities.ClientAuthority;
 using UnityEngine;
-using Unity.Netcode.Components;
 using Unity.Netcode;
 
 

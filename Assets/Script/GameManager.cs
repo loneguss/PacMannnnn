@@ -1,40 +1,25 @@
-using System;
 using System.Collections;
 using Unity.Netcode;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class GameManager : NetworkBehaviour
 {
     [SerializeField] private GameObject scoreTeamText;
-
+    [SerializeField] private GameObject timeText;
+    
     [SerializeField] private Transform blueFlagRespawn;
     [SerializeField] private Transform redFlagRespawn;
 
     private Transform spawnBlueFlagTransform;
     private Transform spawnRedFlagTransform;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
     // Update is called once per frame
     void Update()
     {
         if (IsServer)
         {
-            scoreTeamText.SetActive(true);
+            DisplayUIServerRpc();
         }
-        // if (Input.GetKeyDown(KeyCode.S) && IsServer)
-        // {
-        //     spawnBlueFlagTransform = Instantiate(blueFlagRespawn);
-        //     spawnBlueFlagTransform.GetComponent<NetworkObject>().Spawn(true);
-        //     
-        //     spawnRedFlagTransform = Instantiate(redFlagRespawn);
-        //     spawnRedFlagTransform.GetComponent<NetworkObject>().Spawn(true);
-        // }
     }
 
     public IEnumerator RedFlagSpawn()
@@ -52,16 +37,19 @@ public class GameManager : NetworkBehaviour
         spawnBlueFlagTransform = Instantiate(blueFlagRespawn);
         spawnBlueFlagTransform.GetComponent<NetworkObject>().Spawn(true);
     }
+    
+    
 
     [ClientRpc]
-    public void DisplayScoreClientRpc()
+    public void DisplayUIClientRpc()
     {
         scoreTeamText.SetActive(true);
+        timeText.SetActive(true);
     }
     
     [ServerRpc(RequireOwnership = false)]
-    public void DisplayScoreServerRpc()
+    public void DisplayUIServerRpc()
     {
-        scoreTeamText.SetActive(true);
+        DisplayUIClientRpc();
     }
 }

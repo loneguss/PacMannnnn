@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using QFSW.QC;
 using Unity.Collections;
 using Unity.Netcode;
 using UnityEngine;
@@ -40,12 +37,6 @@ public class Player : NetworkBehaviour
         _playerTeleport = GetComponent<PlayerTeleport>();
         playerBase = GameObject.FindWithTag("Base");
         GetComponent<Gun>().playerName = playerName.Value.ToString();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     public void Dead()
