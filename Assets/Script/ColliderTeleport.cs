@@ -14,10 +14,16 @@ public class ColliderTeleport : MonoBehaviour
     public bool Preserve_XAxis;
     public bool Preserve_YAxis;
     public bool Preserve_ZAxis;
+    
+    public Player.Team Team;
+
 
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        //test
+        collision.gameObject.GetComponent<Player>().SetTeamServerRpc(Team);
+        
         if (NetworkManager.Singleton == null || !NetworkManager.Singleton.IsListening)
         {
             return;
