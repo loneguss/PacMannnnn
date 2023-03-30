@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.Collections;
 using Unity.Netcode;
 using UnityEngine;
@@ -14,47 +15,79 @@ public class Player : NetworkBehaviour
 
     [SerializeField] private GameObject playerBase;
     private bool isDead = false;
-    private PlayerTeleport _playerTeleport;
+    [SerializeField] private PlayerTeleport _playerTeleport;
 
-    [SerializeField] private NetworkVariable<FixedString64Bytes> playerName = new NetworkVariable<FixedString64Bytes>
-        ("player", NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    [SerializeField] private string PlayerName;
 
-    private Team _team = Team.White;
+    [SerializeField] private Team _team = Team.White;
 
     // Start is called before the first frame update
     void Start()
     {
+        if (IsOwner)
+        {
+            FindObjectOfType<CameraFollow>().target = this.transform;
+        }
+        
         if (IsServer)
         {
             FindObjectOfType<Lobby>().ChangeMaxPlayerServerRpc();
+            SetTeamServerRpc(_team);
         }
 
-
-        if (!IsOwner) return;
-        SetTeamServerRpc(_team);
-        //GameObject.FindObjectOfType<Lobby>().ChangeMaxPlayerServerRpc();
-        playerName.Value = "Player:" + NetworkManager.Singleton.LocalClientId.ToString();
-        _playerTeleport = GetComponent<PlayerTeleport>();
         playerBase = GameObject.FindWithTag("Base");
-        GetComponent<Gun>().playerName = playerName.Value.ToString();
+        _playerTeleport = GetComponent<PlayerTeleport>();
+
+        //GameObject.FindObjectOfType<Lobby>().ChangeMaxPlayerServerRpc();
+        
+        PlayerName = "Player:" + NetworkManager.Singleton.LocalClientId.ToString();
+
+
+        GetComponent<Gun>().playerName = PlayerName;
+
+    }
+    
+    // Update is called once per frame
+    void Update()
+    {
+
     }
 
     public void Dead()
     {
         isDead = true;
-        Debug.Log("U Dead");
-        _playerTeleport.Teleport(playerBase);
+        Debug.Log("U Dead" + PlayerName);
+        _playerTeleport.Teleport(playerBase.gameObject);
+
+        Vector3 des = new Vector3();
+        des = playerBase.transform.position;
+            
+        GetComponent<PlayerMovement>().Teleporting(des);
+    }
+    
+    public void Spawn(Team t)
+    {
+        _playerTeleport.Teleport(playerBase.gameObject);
+
+        Vector3 des = new Vector3();
+        des = playerBase.transform.position;
+        GetComponent<PlayerMovement>().Teleporting(des);
+        if (IsServer)
+        {
+            StartCoroutine(SpawnTimer(t));
+        }
+
+    }
+
+    IEnumerator SpawnTimer(Team t)
+    {
+        yield return new WaitForSeconds(0.3f);
+        SetTeamServerRpc(t);
     }
 
     public string GetPlayerName()
     {
-        return playerName.Value.ToString();
-    }
-
-    [ServerRpc(RequireOwnership = false)]
-    private void SetPlayerNameServerRpc()
-    {
-        Debug.Log("fuickkk");
+        return PlayerName;
     }
 
 
@@ -90,5 +123,22 @@ public class Player : NetworkBehaviour
     public Team GetPlayerTeam()
     {
         return _team;
+    }
+    
+    public PlayerTeleport GetPlayerTeleport()
+    {
+        return _playerTeleport;
+    }
+    
+    public GameObject GetPlayerBase()
+    {
+        return playerBase.gameObject;
+    }
+
+    
+    
+    public void SetPlayerBase(GameObject _base)
+    {
+        playerBase = _base;
     }
 }

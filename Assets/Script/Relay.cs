@@ -15,6 +15,7 @@ using UnityEngine;
 public class Relay : NetworkBehaviour
 {
     [SerializeField] private TMP_InputField _inputField;
+    [SerializeField] private TextMeshProUGUI gameCode;
     
     
     private async void Start()
@@ -33,6 +34,7 @@ public class Relay : NetworkBehaviour
             string joinCode = await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
             
             Debug.Log("Join Code : " + joinCode);
+            gameCode.text = "Game Code: " + joinCode;
 
             RelayServerData relayServerData = new RelayServerData(allocation, "dtls");
             

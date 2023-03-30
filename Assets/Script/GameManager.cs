@@ -10,8 +10,30 @@ public class GameManager : NetworkBehaviour
     [SerializeField] private Transform blueFlagRespawn;
     [SerializeField] private Transform redFlagRespawn;
 
+    [SerializeField] private Transform greenFlagRespawn;
+
+    [SerializeField] private GameObject redBase, blueBase;
+    public Transform GreenFlagRespawn
+    {
+        get => greenFlagRespawn;
+        set => greenFlagRespawn = value;
+    }
     private Transform spawnBlueFlagTransform;
     private Transform spawnRedFlagTransform;
+
+    [SerializeField] private GameObject[] test;
+
+    private Transform spawnFlagTransform;
+    public  Transform SpawnFlagTransform
+    {
+        get => spawnFlagTransform;
+        set => spawnFlagTransform = value;
+    }
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
 
     // Update is called once per frame
     void Update()
@@ -51,5 +73,38 @@ public class GameManager : NetworkBehaviour
     public void DisplayUIServerRpc()
     {
         DisplayUIClientRpc();
+    }
+    
+    [ServerRpc]
+    public void StartGameServerRpc()
+    {
+        StartGameClientRpc();
+    }
+    
+    [ClientRpc]
+    private void StartGameClientRpc()
+    {
+        StartGame();
+    }
+    
+    public void StartGame()
+    {
+        GameObject[] allPlayer = GameObject.FindGameObjectsWithTag("Player");
+        test = allPlayer;
+        foreach (var i in allPlayer)
+        {
+            var currentPlayer = i.GetComponent<Player>();
+            if (currentPlayer.GetPlayerTeam() == Player.Team.Red)
+            {
+                currentPlayer.SetPlayerBase(redBase);
+                currentPlayer.Spawn(Player.Team.Red); }
+            else if (currentPlayer.GetPlayerTeam() == Player.Team.Blue)
+            {
+                currentPlayer.SetPlayerBase(blueBase);
+                currentPlayer.Spawn(Player.Team.Blue);
+            }
+            Debug.Log(currentPlayer.GetPlayerName());
+            
+        }
     }
 }

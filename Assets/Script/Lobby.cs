@@ -111,4 +111,11 @@ public class Lobby : NetworkBehaviour
             "Max Player: " + MaxPlayer + " | Blue Team: " + blueTeamPLayer + " | Red Team: " + redTeamPLayer + " |";
     }
 
+    public void StartGameButton()
+    {
+        FindObjectOfType<GameManager>().StartGameServerRpc();
+    }
+
+  
+
 }
