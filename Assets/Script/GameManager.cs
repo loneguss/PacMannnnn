@@ -10,14 +10,8 @@ public class GameManager : NetworkBehaviour
     [SerializeField] private Transform blueFlagRespawn;
     [SerializeField] private Transform redFlagRespawn;
 
-    [SerializeField] private Transform greenFlagRespawn;
-
     [SerializeField] private GameObject redBase, blueBase;
-    public Transform GreenFlagRespawn
-    {
-        get => greenFlagRespawn;
-        set => greenFlagRespawn = value;
-    }
+    
     private Transform spawnBlueFlagTransform;
     private Transform spawnRedFlagTransform;
 
