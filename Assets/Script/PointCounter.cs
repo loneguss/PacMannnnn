@@ -29,11 +29,11 @@ public class PointCounter : NetworkBehaviour
    
     
     [ServerRpc(RequireOwnership = false)]
-    public void FlagPointServerRpc(int value)
+    public void FlagPointServerRpc(int valueTeam1, int valueTeam2)
     {
-        team1Score += value;
-        team2Score += value;
-        FlagPointClientRpc(team1Score,team1Score);
+        team1Score += valueTeam1;
+        team2Score += valueTeam2;
+        FlagPointClientRpc(team1Score,team2Score);
     }
     
     [ClientRpc]

@@ -32,7 +32,7 @@ public class GameManager : NetworkBehaviour
             scoreTeamText.SetActive(true);
         }
 
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.S) && IsServer)
         {
             spawnFlagTransform = Instantiate(greenFlagRespawn);
             spawnFlagTransform.GetComponent<NetworkObject>().Spawn(true);
