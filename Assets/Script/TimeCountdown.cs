@@ -39,7 +39,7 @@ public class TimeCountdown : NetworkBehaviour
             minutes -= Time.deltaTime;
             seconds -= Time.deltaTime;
             
-            Debug.Log(timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds) + "Time JAaaaaa");
+            Debug.Log(timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds) );
         }
         if(_timeLeftServer <= 0) timeText.text = "Time's Up!";
     }
@@ -56,7 +56,7 @@ public class TimeCountdown : NetworkBehaviour
             minutes -= Time.deltaTime;
             seconds -= Time.deltaTime;
             
-            Debug.Log(timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds) + "Time JAaaaaa");
+            timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
         }
         if(_timeLeftServer <= 0 && _timeLeftClient <= 0) timeText.text = "Time's Up!";
         DisplayTimeClientRpc(timeText.text);
