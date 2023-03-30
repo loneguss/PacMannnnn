@@ -67,8 +67,8 @@ public class Gun : NetworkBehaviour
     {
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        bullet.GetComponent<NetworkObject>().Spawn(true);
         rb.velocity = firePoint.up * bulletSpeed * Time.deltaTime;
+        bullet.GetComponent<NetworkObject>().Spawn(true);
     }
     
     
