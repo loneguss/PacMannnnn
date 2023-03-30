@@ -8,6 +8,7 @@ public class GrabFlag : NetworkBehaviour
     [SerializeField] private SpriteRenderer flagSprite;
     private Player _player;
     private PointCounter _pointCounter;
+    private Flag _flag;
 
     private NetworkVariable<bool> isGrab = new NetworkVariable<bool>();
 
@@ -28,11 +29,18 @@ public class GrabFlag : NetworkBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if(col.gameObject.CompareTag("Flag"))
+        if (col.gameObject.CompareTag("Flag"))
         {
-            GrabFlagServerRpc();
+            if (col.gameObject.GetComponent<Flag>().team == Player.Team.Blue && _player.GetPlayerTeam() == Player.Team.Red)
+            {
+                GrabFlagServerRpc();
+            }
+            else if (col.gameObject.GetComponent<Flag>().team == Player.Team.Red && _player.GetPlayerTeam() == Player.Team.Blue)
+            {
+                GrabFlagServerRpc();
+            }
         }
-        
+
         if(col.CompareTag("FlagPoint") && isGrab.Value)
         {
             if (_player.GetPlayerTeam() == Player.Team.Red)
@@ -95,5 +103,6 @@ public class GrabFlag : NetworkBehaviour
     public void DropFlagClientRpc()
     {
         flagSprite.enabled = false;
+        isGrab.Value = false;
     }
 }

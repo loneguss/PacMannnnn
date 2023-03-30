@@ -8,6 +8,7 @@ public class TeamPickingArea : NetworkBehaviour
 {
     public Player.Team Team;
 
+    public bool check;
     // Start is called before the first frame update
     private void OnTriggerEnter2D(Collider2D col)
     {
@@ -19,7 +20,8 @@ public class TeamPickingArea : NetworkBehaviour
     }
     private void OnTriggerExit2D(Collider2D col)
     {
-        if (!IsServer) return;
+        if (!check) return;
+            if (!IsServer) return;
 
         if (!col.transform.CompareTag("Player")) return;
         

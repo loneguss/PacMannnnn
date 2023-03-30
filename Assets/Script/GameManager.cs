@@ -2,24 +2,23 @@ using System;
 using Unity.Netcode;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class GameManager : NetworkBehaviour
 {
     [SerializeField] private GameObject scoreTeamText;
 
-    [SerializeField] private Transform greenFlagRespawn;
+    [SerializeField] private Transform blueFlagRespawn;
+    [SerializeField] private Transform redFlagRespawn;
     public Transform GreenFlagRespawn
     {
-        get => greenFlagRespawn;
-        set => greenFlagRespawn = value;
+        get => blueFlagRespawn;
+        set => blueFlagRespawn = value;
     }
 
-    private Transform spawnFlagTransform;
-    public  Transform SpawnFlagTransform
-    {
-        get => spawnFlagTransform;
-        set => spawnFlagTransform = value;
-    }
+    private Transform spawnBlueFlagTransform;
+    
+    private Transform spawnRedFlagTransform;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,8 +35,11 @@ public class GameManager : NetworkBehaviour
 
         if (Input.GetKeyDown(KeyCode.S) && IsServer)
         {
-            spawnFlagTransform = Instantiate(greenFlagRespawn);
-            spawnFlagTransform.GetComponent<NetworkObject>().Spawn(true);
+            spawnBlueFlagTransform = Instantiate(blueFlagRespawn);
+            spawnBlueFlagTransform.GetComponent<NetworkObject>().Spawn(true);
+            
+            spawnRedFlagTransform = Instantiate(redFlagRespawn);
+            spawnRedFlagTransform.GetComponent<NetworkObject>().Spawn(true);
         }
     }
 
