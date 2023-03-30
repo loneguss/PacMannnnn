@@ -401,3 +401,5 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1798057713223124560, guid: 340abff14c019b44ab33cec456833dad, type: 3}
   bulletSpeed: 1500
   fireRate: 0.5
+  isGunActive: 0
+  gun: {fileID: 6464684974644587419}
