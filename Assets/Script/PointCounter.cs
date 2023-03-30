@@ -43,7 +43,7 @@ public class PointCounter : NetworkBehaviour
         team2Score = _team2score;
 
         team1ScoreText.text = team1Score.ToString();
-        team1ScoreText.text = team2Score.ToString();
+        team2ScoreText.text = team2Score.ToString();
 
         
         _gameManager.DisplayScoreServerRpc();
