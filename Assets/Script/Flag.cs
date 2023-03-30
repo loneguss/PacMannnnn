@@ -5,41 +5,28 @@ public class Flag : NetworkBehaviour
 {
     private PointCounter _pointCounter;
     private GameManager _gameManager;
+    private Player _player;
 
     private void Start()
     {
+        _player = FindObjectOfType<Player>().GetComponent<Player>();
         _pointCounter = FindObjectOfType<PointCounter>().GetComponent<PointCounter>();
         _gameManager = FindObjectOfType<GameManager>().GetComponent<GameManager>();
     }
 
     private void OnTriggerEnter2D(Collider2D col)
      {
-         if (col.CompareTag("Player"))
+         if (col.CompareTag("Player") && _player.GetPlayerTeam() == Player.Team.Red)
          {
-             
-             if (IsClient)
-             {
-                 Debug.Log("Player has entered the flag zone");
-                 _pointCounter.FlagPointServerRpc(1); 
-                 DestroyFlagServerRpc();
-             }
+             Debug.Log("Player has entered the flag zone");
+             _pointCounter.FlagPointServerRpc(1, 0); 
+             DestroyFlagServerRpc();
          }
-
-         if (col.CompareTag("Player"))
+         if (col.CompareTag("Player") && _player.GetPlayerTeam() == Player.Team.Blue)
          {
-             
-             // if (OwnerClientId == 1)
-             // {
-             //     Debug.Log("Player has entered the flag zone");
-             //     _pointCounter.FlagPointClientRpc(0, 1); 
-             //     DestroyFlagServerRpc();
-             // }
-             // {
-             //     Debug.Log("banana zone");
-             //     _pointCounter.FlagPointClientRpc(1, 1);
-             //     DestroyFlagServerRpc();
-             // }
-             // _pointCounter.FlagPointServerRpc(1);
+             Debug.Log("Player has entered the flag zone");
+             _pointCounter.FlagPointServerRpc(0, 1); 
+             DestroyFlagServerRpc();
          }
      }
     
