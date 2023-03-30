@@ -11,7 +11,6 @@ public class Gun : NetworkBehaviour
     public float fireRate = 0.5f;
     private float nextFireTime = 0f;
     [SerializeField] private bool isGunActive = false;
-    public bool IsGunActive { get => isGunActive; set => isGunActive = value; }
     [SerializeField] private SpriteRenderer gun;
 
     private void Start()
