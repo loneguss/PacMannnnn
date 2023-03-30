@@ -2541,7 +2541,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Team: 0
-  check: 0
+  check: 1
 --- !u!114 &764153097
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5446,7 +5446,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Team: 1
-  check: 0
+  check: 1
 --- !u!114 &1464800313
 MonoBehaviour:
   m_ObjectHideFlags: 0
