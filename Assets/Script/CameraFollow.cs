@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 
-public class CameraFollow : NetworkBehaviour
+public class CameraFollow : MonoBehaviour
 {
     private Vector3 velocity = Vector3.zero;
     public Transform target;
@@ -12,8 +12,6 @@ public class CameraFollow : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
-        target = NetworkManager.Singleton.ConnectedClients[NetworkManager.Singleton.LocalClientId].PlayerObject.transform;
         
     }
     
