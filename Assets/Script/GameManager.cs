@@ -18,11 +18,6 @@ public class GameManager : NetworkBehaviour
     [SerializeField] private GameObject[] test;
 
     private Transform spawnFlagTransform;
-    public  Transform SpawnFlagTransform
-    {
-        get => spawnFlagTransform;
-        set => spawnFlagTransform = value;
-    }
     // Start is called before the first frame update
     void Start()
     {
