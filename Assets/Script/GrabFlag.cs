@@ -52,7 +52,7 @@ public class GrabFlag : NetworkBehaviour
         
     }
     
-    [ServerRpc(RequireOwnership = false)]
+    [ServerRpc]
     public void GrabFlagServerRpc()
     {
         if (!flagSprite.enabled && isGrab.Value)
@@ -62,32 +62,38 @@ public class GrabFlag : NetworkBehaviour
         }
         if (!isGrab.Value)
         {
-            GrabFlagClientRpc();
+            if (_player.GetPlayerTeam() == Player.Team.Red)
+            {
+                GrabFlagClientRpc(Color.blue);
+            }
+            if (_player.GetPlayerTeam() == Player.Team.Blue)
+            {
+                GrabFlagClientRpc(Color.red);
+            }
+            
             flagSprite.enabled = true;
             isGrab.Value = true;
         }
-        else if (isGrab.Value)
+        else
         {
-            GrabFlagClientRpc();
-            flagSprite.enabled = false;
-            isGrab.Value = false;
+            DropFlagClientRpc();
         }
     }
     
     [ClientRpc]
-    public void GrabFlagClientRpc()
+    public void GrabFlagClientRpc(Color _color)
     {
         if (!isGrab.Value)
         {
-            Debug.Log("Player has grabbed the flag");
-            if (_player.GetPlayerTeam() == Player.Team.Red)
-            {
-                flagSprite.color = Color.blue;
-            }
-            if (_player.GetPlayerTeam() == Player.Team.Blue)
-            {
-                flagSprite.color = Color.red;
-            }
+            flagSprite.color = _color;
+            flagSprite.enabled = true;
         }
+
+    }
+    
+    [ClientRpc]
+    public void DropFlagClientRpc()
+    {
+        flagSprite.enabled = false;
     }
 }
