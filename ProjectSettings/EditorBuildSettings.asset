@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SadHamster.unity
     guid: 8ef856f998212a54a8cd647fab88e697
+  - enabled: 1
+    path: Assets/Scenes/EmoGus.unity
+    guid: 80b295fbd40b7d7488b91740dd7c5613
   m_configObjects: {}
