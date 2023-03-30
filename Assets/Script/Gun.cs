@@ -1,10 +1,5 @@
-using System;
 using Unity.Netcode;
 using UnityEngine;
-using UnityEngine.Scripting;
-using UnityEngine.UIElements;
-using Unity.Netcode.Components;
-
 
 public class Gun : NetworkBehaviour
 {
@@ -21,7 +16,7 @@ public class Gun : NetworkBehaviour
     private void Start()
     {
         if (!IsOwner) return;
-        SpawnBulletServerRpc();
+        RemoveGunServerRpc();
     }
 
     void Update()
@@ -43,13 +38,10 @@ public class Gun : NetworkBehaviour
         if (Time.time < nextFireTime) return;
 
         if (!isGunActive) return;
-        else
-        {
-            Debug.Log("Shoot");
-            SpawnBulletServerRpc();
-            nextFireTime = Time.time + 1f / fireRate;
-        }
-
+        
+        Debug.Log("Shoot");
+        SpawnBulletServerRpc();
+        nextFireTime = Time.time + 1f / fireRate;
 
         RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.up);
         if (hitInfo)
@@ -67,12 +59,12 @@ public class Gun : NetworkBehaviour
     {
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        rb.velocity = firePoint.up * bulletSpeed * Time.deltaTime;
         bullet.GetComponent<NetworkObject>().Spawn(true);
+        rb.velocity = firePoint.up * bulletSpeed * Time.deltaTime;
     }
     
     
-    [ClientRpc()]
+    [ClientRpc]
     public void RemoveGunClientRpc()
     {
         
