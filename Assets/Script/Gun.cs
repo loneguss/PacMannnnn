@@ -36,6 +36,5 @@ public class Gun : NetworkBehaviour
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         rb.velocity = firePoint.up * bulletSpeed * Time.deltaTime;
         bullet.GetComponent<NetworkObject>().Spawn(true);
-        
     }
 }
