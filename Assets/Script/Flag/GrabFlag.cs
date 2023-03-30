@@ -9,6 +9,7 @@ public class GrabFlag : NetworkBehaviour
     private Player _player;
     private PointCounter _pointCounter;
     private Flag _flag;
+    private FlagPoint _flagPoint;
     private GameManager _gameManager;
 
     private bool isGrab;
@@ -39,7 +40,7 @@ public class GrabFlag : NetworkBehaviour
 
         if(col.CompareTag("FlagPoint") && isGrab)
         {
-            if (_player.GetPlayerTeam() == Player.Team.Red)
+            if (_player.GetPlayerTeam() == Player.Team.Red && col.GetComponent<FlagPoint>().FlagPointTeam == Player.Team.Red)
             {
                 GrabFlagServerRpc();
                 _pointCounter.FlagPointServerRpc(1, 0);
@@ -47,7 +48,7 @@ public class GrabFlag : NetworkBehaviour
                 flagSprite.enabled = false;
             }
 
-            if (_player.GetPlayerTeam() == Player.Team.Blue)
+            if (_player.GetPlayerTeam() == Player.Team.Blue && col.GetComponent<FlagPoint>().FlagPointTeam == Player.Team.Blue)
             {
                 GrabFlagServerRpc();
                 _pointCounter.FlagPointServerRpc(0, 1);
