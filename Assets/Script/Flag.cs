@@ -1,10 +1,8 @@
-using System;
 using Unity.Netcode;
 using UnityEngine;
 
 public class Flag : NetworkBehaviour
 {
-    public Transform flagTransform;
     private PointCounter _pointCounter;
     private GameManager _gameManager;
 
@@ -19,28 +17,29 @@ public class Flag : NetworkBehaviour
          if (col.CompareTag("Player"))
          {
              
-             if (IsServer)
+             if (IsClient)
              {
                  Debug.Log("Player has entered the flag zone");
                  _pointCounter.FlagPointServerRpc(1); 
                  DestroyFlagServerRpc();
              }
-             // _pointCounter.FlagPointServerRpc(1);
-             Destroy(this.gameObject);
          }
 
          if (col.CompareTag("Player"))
          {
              
-             if (!IsServer)
-             {
-                 Debug.Log("banana zone");
-                 _pointCounter.FlagPointClientRpc(1, 1);
-                 DestroyFlagServerRpc();
-             }
+             // if (OwnerClientId == 1)
+             // {
+             //     Debug.Log("Player has entered the flag zone");
+             //     _pointCounter.FlagPointClientRpc(0, 1); 
+             //     DestroyFlagServerRpc();
+             // }
+             // {
+             //     Debug.Log("banana zone");
+             //     _pointCounter.FlagPointClientRpc(1, 1);
+             //     DestroyFlagServerRpc();
+             // }
              // _pointCounter.FlagPointServerRpc(1);
-             Destroy(this);
-
          }
      }
     

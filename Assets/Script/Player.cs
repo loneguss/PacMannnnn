@@ -90,4 +90,9 @@ public class Player : NetworkBehaviour
         this._team = _team;
         GetComponent<SpriteRenderer>().color = color;
     }
+
+    public Team GetPlayerTeam()
+    {
+        return _team;
+    }
 }

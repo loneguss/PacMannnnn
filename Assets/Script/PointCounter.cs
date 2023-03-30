@@ -32,6 +32,7 @@ public class PointCounter : NetworkBehaviour
     public void FlagPointServerRpc(int value)
     {
         team1Score += value;
+        team2Score += value;
         FlagPointClientRpc(team1Score,team1Score);
     }
     
