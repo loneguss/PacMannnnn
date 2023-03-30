@@ -9,17 +9,7 @@ public class Gun : NetworkBehaviour
     public float bulletSpeed = 20f;
     public float fireRate = 0.5f;
     private float nextFireTime = 0f;
-
-    void Update()
-    {
-       /*     
-        if (Input.GetButtonDown("Fire1") && Time.time >= nextFireTime)
-        {
-            Shoot();
-            nextFireTime = Time.time + 1f / fireRate;
-        }
-        */
-    }
+    
 
     public void Shoot()
     {
@@ -44,7 +34,8 @@ public class Gun : NetworkBehaviour
     {
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        bullet.GetComponent<NetworkObject>().Spawn(true);
         rb.velocity = firePoint.up * bulletSpeed * Time.deltaTime;
+        bullet.GetComponent<NetworkObject>().Spawn(true);
+        
     }
 }
