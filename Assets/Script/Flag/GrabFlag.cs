@@ -30,7 +30,8 @@ public class GrabFlag : NetworkBehaviour
             {
                 GrabFlagServerRpc();
             }
-            else if (col.gameObject.GetComponent<Flag>().team == Player.Team.Red && _player.GetPlayerTeam() == Player.Team.Blue)
+            
+            if (col.gameObject.GetComponent<Flag>().team == Player.Team.Red && _player.GetPlayerTeam() == Player.Team.Blue)
             {
                 GrabFlagServerRpc();
             }
@@ -67,17 +68,27 @@ public class GrabFlag : NetworkBehaviour
         }
         if (!isGrab)
         {
-            if (_player.GetPlayerTeam() == Player.Team.Red)
+            if (_player.GetPlayerTeam() == Player.Team.Red && _player.GetPlayerTeam() != Player.Team.Red)
             {
                 GrabFlagClientRpc(Color.blue);
             }
-            if (_player.GetPlayerTeam() == Player.Team.Blue)
+            else
+            {
+                Debug.Log("Drop blue");
+                DropFlagClientRpc();
+            }
+            if (_player.GetPlayerTeam() == Player.Team.Blue && _player.GetPlayerTeam() != Player.Team.Blue)
             {
                 GrabFlagClientRpc(Color.red);
             }
+            else
+            {
+                Debug.Log("Drop red");
+                DropFlagClientRpc();
+            }
             
-            flagSprite.enabled = true;
-            isGrab = true;
+            // flagSprite.enabled = true;
+            // isGrab = true;
         }
         else
         {
@@ -92,6 +103,7 @@ public class GrabFlag : NetworkBehaviour
         {
             flagSprite.color = _color;
             flagSprite.enabled = true;
+            isGrab = true;
         }
 
     }
