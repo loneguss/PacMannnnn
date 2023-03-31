@@ -183,6 +183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ownerName: 
+  impact: {fileID: 6127666820020743072, guid: 05888bc3ac5e81649a33c20ebc80a5b5, type: 3}
 --- !u!1 &8862919824970295125
 GameObject:
   m_ObjectHideFlags: 0

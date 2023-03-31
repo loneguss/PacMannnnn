@@ -5,6 +5,7 @@ using UnityEngine;
 public class Bullet : NetworkBehaviour
 {
     public string ownerName;
+    [SerializeField] private GameObject impact;
 
     // Start is called before the first frame update
     void Start()
@@ -31,10 +32,18 @@ public class Bullet : NetworkBehaviour
                 Debug.Log("same name");
                 return;
             }
+            SpawnImpactServerRpc(col.transform.position);
             player.Dead();
            FindObjectOfType<NetworkFeed>().FeedServerRpc(ownerName,NetworkFeed.FeedType.Kill,player.GetPlayerName());
-           DeleteBulletServerRpc();
+           
         }
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    private void SpawnImpactServerRpc(Vector3 pos)
+    {
+        var _impact = Instantiate(impact, pos, Quaternion.identity);
+        _impact.GetComponent<NetworkObject>().Spawn(true);
     }
     
     IEnumerator DeleteBullet(float time)
