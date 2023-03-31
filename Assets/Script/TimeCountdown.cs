@@ -10,7 +10,7 @@ public class TimeCountdown : NetworkBehaviour
     private float _timeLeftServer;
     private float _timeLeftClient;
     [SerializeField] private TextMeshProUGUI timeText;
-    
+
     void Start()
     {
         _gameManager = GetComponent<GameManager>();
@@ -19,6 +19,10 @@ public class TimeCountdown : NetworkBehaviour
     
     void Update()
     {
+        if (_gameManager.GetIsGame() == false)
+        {
+            return;
+        }
         if (IsServer)
         {
             DisplayTimeServerRpc();

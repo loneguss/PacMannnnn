@@ -21,8 +21,8 @@ public class PointCounter : NetworkBehaviour
     private void Update()
     {
         
-        team1ScoreText.text = team1Score.ToString();
-        team2ScoreText.text = team2Score.ToString();
+        team1ScoreText.text = "Red Team: " + team1Score.ToString();
+        team2ScoreText.text = "Blue Team: " + team2Score.ToString();
         
     }
     
@@ -42,8 +42,8 @@ public class PointCounter : NetworkBehaviour
         team1Score = _team1Score;
         team2Score = _team2score;
 
-        team1ScoreText.text = team1Score.ToString();
-        team2ScoreText.text = team2Score.ToString();
+        team1ScoreText.text =  team1Score.ToString();
+        team2ScoreText.text =  team2Score.ToString();
 
         
         _gameManager.DisplayUIServerRpc();

@@ -11,6 +11,8 @@ public class GameManager : NetworkBehaviour
     [SerializeField] private Transform redFlagRespawn;
 
     [SerializeField] private GameObject redBase, blueBase;
+
+    private bool isGame = false;
     
     private Transform spawnBlueFlagTransform;
     private Transform spawnRedFlagTransform;
@@ -95,5 +97,12 @@ public class GameManager : NetworkBehaviour
             Debug.Log(currentPlayer.GetPlayerName());
             
         }
+
+        isGame = true;
+    }
+
+    public bool GetIsGame()
+    {
+        return isGame;
     }
 }
