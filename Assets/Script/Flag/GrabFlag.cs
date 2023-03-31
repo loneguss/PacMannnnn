@@ -24,15 +24,17 @@ public class GrabFlag : NetworkBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.CompareTag("Flag"))
+        if (col.gameObject.CompareTag("Flag") && !isGrab)
         {
             if (col.gameObject.GetComponent<Flag>().team == Player.Team.Blue && _player.GetPlayerTeam() == Player.Team.Red)
             {
+                Debug.Log("Blue flag");
                 GrabFlagServerRpc();
             }
             
             if (col.gameObject.GetComponent<Flag>().team == Player.Team.Red && _player.GetPlayerTeam() == Player.Team.Blue)
             {
+                Debug.Log("Red flag");
                 GrabFlagServerRpc();
             }
         }
@@ -68,27 +70,16 @@ public class GrabFlag : NetworkBehaviour
         }
         if (!isGrab)
         {
-            if (_player.GetPlayerTeam() == Player.Team.Red && _player.GetPlayerTeam() != Player.Team.Red)
+            if (_player.GetPlayerTeam() == Player.Team.Red)
             {
+                Debug.Log("Blue Flag Grabbed");
                 GrabFlagClientRpc(Color.blue);
             }
-            else
+            if (_player.GetPlayerTeam() == Player.Team.Blue)
             {
-                Debug.Log("Drop blue");
-                DropFlagClientRpc();
-            }
-            if (_player.GetPlayerTeam() == Player.Team.Blue && _player.GetPlayerTeam() != Player.Team.Blue)
-            {
+                Debug.Log("Red Flag Grabbed");
                 GrabFlagClientRpc(Color.red);
             }
-            else
-            {
-                Debug.Log("Drop red");
-                DropFlagClientRpc();
-            }
-            
-            // flagSprite.enabled = true;
-            // isGrab = true;
         }
         else
         {
@@ -101,6 +92,7 @@ public class GrabFlag : NetworkBehaviour
     {
         if (!isGrab)
         {
+            Debug.Log("Flag Grabbed");
             flagSprite.color = _color;
             flagSprite.enabled = true;
             isGrab = true;
