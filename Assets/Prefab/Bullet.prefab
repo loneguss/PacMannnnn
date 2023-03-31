@@ -183,6 +183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ownerName: 
+  impact: {fileID: 6127666820020743072, guid: 05888bc3ac5e81649a33c20ebc80a5b5, type: 3}
 --- !u!1 &8862919824970295125
 GameObject:
   m_ObjectHideFlags: 0
@@ -384,6 +385,10 @@ PrefabInstance:
     - target: {fileID: 4794043405585894037, guid: 37138c0c33167b04fa1fb90b7f5a794f, type: 3}
       propertyPath: m_Name
       value: Impact01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4794043405585894037, guid: 37138c0c33167b04fa1fb90b7f5a794f, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 37138c0c33167b04fa1fb90b7f5a794f, type: 3}
