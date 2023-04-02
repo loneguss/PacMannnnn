@@ -34,7 +34,8 @@ public class Bullet : NetworkBehaviour
             }
             SpawnImpactServerRpc(col.transform.position);
             player.Dead();
-           FindObjectOfType<NetworkFeed>().FeedServerRpc(ownerName,NetworkFeed.FeedType.Kill,player.GetPlayerName());
+            StartCoroutine(DeleteBullet(0.01f));
+            FindObjectOfType<NetworkFeed>().FeedServerRpc(ownerName,NetworkFeed.FeedType.Kill,player.GetPlayerName());
            
         }
     }
@@ -42,6 +43,8 @@ public class Bullet : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     private void SpawnImpactServerRpc(Vector3 pos)
     {
+
+        Vector3 newPos = new Vector3(pos.x, pos.y, -10f);
         var _impact = Instantiate(impact, pos, Quaternion.identity);
         _impact.GetComponent<NetworkObject>().Spawn(true);
     }
