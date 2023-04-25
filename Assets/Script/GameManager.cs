@@ -39,16 +39,44 @@ public class GameManager : NetworkBehaviour
     {
         yield return new WaitForSeconds(2f);
         Debug.Log("Red Flag Spawned");
+        if (!IsOwner) yield break;
         spawnRedFlagTransform = Instantiate(redFlagRespawn);
         spawnRedFlagTransform.GetComponent<NetworkObject>().Spawn(true);
+        
+        
     }
     
     public IEnumerator BlueFlagSpawn()
     {
         yield return new WaitForSeconds(2f);
-        Debug.Log("Blue Flag Spawned"); 
+        Debug.Log("Blue Flag Spawned");
+        if (!IsOwner) yield break;
         spawnBlueFlagTransform = Instantiate(blueFlagRespawn);
         spawnBlueFlagTransform.GetComponent<NetworkObject>().Spawn(true);
+    }
+
+    // [ServerRpc]
+    // public void RedFlagSpawnServerRpc()
+    // {
+    //     StartCoroutine(RedFlagSpawn());
+    // }
+    //
+    // [ServerRpc]
+    // public void BlueFlagSpawnServerRpc()
+    // {
+    //     StartCoroutine(BlueFlagSpawn());
+    // }
+    
+    [ClientRpc]
+    public void RedFlagSpawnClientRpc()
+    {
+        StartCoroutine(RedFlagSpawn());
+    }
+    
+    [ClientRpc]
+    public void BlueFlagSpawnClientRpc()
+    {
+        StartCoroutine(BlueFlagSpawn());
     }
     
     

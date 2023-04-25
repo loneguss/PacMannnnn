@@ -11,28 +11,28 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
+  - enabled: 0
     path: 
-    guid: 80b295fbd40b7d7488b91740dd7c5613
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 1
-    path: 
-    guid: c49554e225c4d214c881ad7f5c65249a
-  - enabled: 1
     path: Assets/Scenes/EmoGus.unity
     guid: 647671403821eab4d84fe4a4f713f963
-  - enabled: 1
+  - enabled: 0
     path: 
-    guid: 0e4278d6e17319744b8e4ab497d6db51
-  - enabled: 1
+    guid: 00000000000000000000000000000000
+  - enabled: 0
     path: 
-    guid: 1d1a4e3474b0cd34c81e0f20f164f4d2
-  - enabled: 1
+    guid: 00000000000000000000000000000000
+  - enabled: 0
     path: 
-    guid: 80a91b5534df83340b8cf312cef30df9
-  - enabled: 1
+    guid: 00000000000000000000000000000000
+  - enabled: 0
     path: Assets/Scenes/SadHamster.unity
     guid: 29f97be137c450e43b1be2aa7333617c
   - enabled: 1
