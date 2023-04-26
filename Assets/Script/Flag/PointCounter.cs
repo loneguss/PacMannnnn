@@ -5,11 +5,33 @@ using UnityEngine;
 
 public class PointCounter : NetworkBehaviour
 {
+    [Header("Red Team 1")]
     [SerializeField] private int team1Score;
-    [SerializeField] private int team2Score;
+    public int Team1Score
+    {
+        get => team1Score;
+        set
+        {
+            team1Score = value;
+            team1ScoreText.text = team1Score.ToString();
+        }
+    }
     
-    [SerializeField] private TextMeshProUGUI team1ScoreText;
-    [SerializeField] private TextMeshProUGUI team2ScoreText;
+    [Header("Blue Team 2")]
+    [SerializeField] private int team2Score;
+    public int Team2Score
+    {
+        get => team2Score;
+        set
+        {
+            team2Score = value;
+            team2ScoreText.text = team2Score.ToString();
+        }
+    }
+    
+    [Header("Team Score Text")]
+    [SerializeField] private TextMeshProUGUI team1ScoreText; // Red Team
+    [SerializeField] private TextMeshProUGUI team2ScoreText; // Blue Team
 
     private GameManager _gameManager;
     

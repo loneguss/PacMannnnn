@@ -307,7 +307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3142699076
+  GlobalObjectIdHash: 1975336412
   AlwaysReplicateAsRoot: 0
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
@@ -2555,7 +2555,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 493836478
+  GlobalObjectIdHash: 1539708225
   AlwaysReplicateAsRoot: 0
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
@@ -6478,7 +6478,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1809263606
+  GlobalObjectIdHash: 2626139397
   AlwaysReplicateAsRoot: 0
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
@@ -7520,7 +7520,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3302674491
+  GlobalObjectIdHash: 66018913
   AlwaysReplicateAsRoot: 0
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
@@ -8278,7 +8278,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 4079809378
+  GlobalObjectIdHash: 1067748380
   AlwaysReplicateAsRoot: 0
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
@@ -10521,7 +10521,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1539265086
+  GlobalObjectIdHash: 2675812649
   AlwaysReplicateAsRoot: 0
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
@@ -10812,6 +10812,7 @@ GameObject:
   - component: {fileID: 2029806702}
   - component: {fileID: 2029806703}
   - component: {fileID: 2029806704}
+  - component: {fileID: 2029806705}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -10831,7 +10832,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2920020260
+  GlobalObjectIdHash: 1454061376
   AlwaysReplicateAsRoot: 0
   DontDestroyWithOwner: 1
   AutoObjectParentSync: 1
@@ -10916,7 +10917,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaab19aa98f6a384485ccf96ff2183d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeLimit: 300
+  timeLimit: 30
   timeText: {fileID: 1335925290}
 --- !u!114 &2029806704
 MonoBehaviour:
@@ -10931,6 +10932,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: {fileID: 516037752}
+--- !u!114 &2029806705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2029806697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08e78f170e103d545ace0f4f9cebfe90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2035233901
 GameObject:
   m_ObjectHideFlags: 0

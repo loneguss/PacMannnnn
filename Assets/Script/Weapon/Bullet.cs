@@ -31,8 +31,9 @@ public class Bullet : NetworkBehaviour
             SpawnImpactServerRpc(col.transform.position);
             player.Dead();
             StartCoroutine(DeleteBullet(0.01f));
-            FindObjectOfType<NetworkFeed>().Feed(realName,NetworkFeed.FeedType.Kill,player.GetPlayerRealName());
-           
+            FindObjectOfType<NetworkFeed>().Feed(realName,NetworkFeed.FeedType.Kill
+                ,player.GetPlayerRealName());
+            
         }
     }
 

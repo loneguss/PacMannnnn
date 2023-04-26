@@ -18,7 +18,7 @@ public class Gun : NetworkBehaviour
     private void Start()
     {
         if (!IsOwner) return;
-        RemoveGunServerRpc();
+        // RemoveGunServerRpc();
     }
 
     void Update()
@@ -76,7 +76,6 @@ public class Gun : NetworkBehaviour
     [ClientRpc]
     public void RemoveGunClientRpc()
     {
-        
         Debug.Log("removegun ");
         if (isGunActive)
         {
