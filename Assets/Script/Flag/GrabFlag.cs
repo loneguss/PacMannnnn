@@ -47,6 +47,7 @@ public class GrabFlag : NetworkBehaviour
 
         if(col.CompareTag("FlagPoint") && isGrab)
         {
+            FindObjectOfType<NetworkFeed>().Feed(_player.GetPlayerRealName(), NetworkFeed.FeedType.finishFlag, " ");
             if (_player.GetPlayerTeam() == Player.Team.Red && col.gameObject.GetComponent<FlagPoint>().FlagPointTeam == Player.Team.Red)
             {
                 _pointCounter.FlagPointServerRpc(1, 0);
