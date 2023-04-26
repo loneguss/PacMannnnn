@@ -14,7 +14,6 @@ public class SetPlayerName : NetworkBehaviour
     private string playerName;
     
 
-
     public void SetName()
     {
         playerName = name.text;
