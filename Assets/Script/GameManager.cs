@@ -20,6 +20,10 @@ public class GameManager : NetworkBehaviour
     [SerializeField] private GameObject[] test;
 
     private Transform spawnFlagTransform;
+
+    public string playerName;
+        
+        
     // Start is called before the first frame update
     void Start()
     {
@@ -105,4 +109,5 @@ public class GameManager : NetworkBehaviour
     {
         return isGame;
     }
+    
 }

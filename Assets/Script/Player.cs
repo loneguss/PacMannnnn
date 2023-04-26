@@ -1,5 +1,7 @@
 using System.Collections;
+using TMPro;
 using Unity.Collections;
+using Unity.Mathematics;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -21,12 +23,17 @@ public class Player : NetworkBehaviour
 
     [SerializeField] private Team _team = Team.White;
 
+    [SerializeField] private GameObject playerName;
+
+    public GameObject playerNameObject;
+
     // Start is called before the first frame update
     void Start()
     {
         if (IsOwner)
         {
             FindObjectOfType<CameraFollow>().target = this.transform;
+            SpawnNameServerRpc();
         }
         
         if (IsServer)
@@ -35,6 +42,9 @@ public class Player : NetworkBehaviour
             SetTeamServerRpc(_team);
         }
 
+      
+        
+        
         playerBase = GameObject.FindWithTag("Base");
         _playerTeleport = GetComponent<PlayerTeleport>();
 
@@ -44,7 +54,7 @@ public class Player : NetworkBehaviour
 
 
         GetComponent<Gun>().playerName = PlayerName;
-
+        
     }
     
     // Update is called once per frame
@@ -90,6 +100,19 @@ public class Player : NetworkBehaviour
         return PlayerName;
     }
 
+    [ServerRpc(RequireOwnership = false)]
+    public void SpawnNameServerRpc(ServerRpcParams serverRpcParams = default)
+    {
+        var clientId = serverRpcParams.Receive.SenderClientId;
+
+        var floatingName = Instantiate(playerName,this.transform);
+        floatingName.GetComponent<NetworkObject>().SpawnWithOwnership(clientId);
+        floatingName.AddComponent<CameraFollow>();
+        floatingName.GetComponent<CameraFollow>().target =  transform;
+        floatingName.GetComponent<CameraFollow>().offset = new Vector3(0, 1, 0);
+        floatingName.GetComponent<CameraFollow>().smoothTime =  0.01f;
+
+    }
 
     [ServerRpc(RequireOwnership = false)]
     public void SetTeamServerRpc(Team _team)

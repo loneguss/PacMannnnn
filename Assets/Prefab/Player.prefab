@@ -525,6 +525,7 @@ MonoBehaviour:
   _playerTeleport: {fileID: 0}
   PlayerName: 
   _team: 2
+  playerName: {fileID: 7629675892017995325, guid: b617cba85cda0be4fb33c9d75bfda563, type: 3}
 --- !u!114 &3101723697500812651
 MonoBehaviour:
   m_ObjectHideFlags: 0
