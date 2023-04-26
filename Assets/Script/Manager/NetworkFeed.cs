@@ -19,7 +19,10 @@ public class NetworkFeed : NetworkBehaviour
     [SerializeField] private TextMeshProUGUI  UI_playerNameB;
     [SerializeField] private Image UI_feedIcon;
 
-    
+    public void Feed(string playerNameA,FeedType _feedType,string playerNameB)
+    {
+        FeedServerRpc(playerNameA,_feedType,playerNameB);
+    }
 
     [ServerRpc (RequireOwnership = false)]
     public void FeedServerRpc(string playerNameA,FeedType _feedType,string playerNameB)
@@ -33,6 +36,8 @@ public class NetworkFeed : NetworkBehaviour
         UI_playerNameA.text = playerNameA;
         UI_feedIcon.sprite = GetSprite(_feedType);
         UI_playerNameB.text = playerNameB;
+        GetComponent<Animation>().Play("Feed_anim");
+
     }
     
     private Sprite GetSprite(FeedType _feedType)
