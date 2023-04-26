@@ -36,6 +36,8 @@ public class Player : NetworkBehaviour
     [SerializeField] private PlayerTeleport _playerTeleport;
 
     [SerializeField] private string PlayerName;
+    [SerializeField] private string PlayerRealName;
+
 
     [SerializeField] private Team _team = Team.White;
 
@@ -46,8 +48,12 @@ public class Player : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
+        
         if (IsOwner)
         {
+            PlayerRealName = SetPlayerName.Instance.GetName();
+
             FindObjectOfType<CameraFollow>().target = this.transform;
             SpawnNameServerRpc();
         }
@@ -71,6 +77,8 @@ public class Player : NetworkBehaviour
 
         grabFlag = GetComponent<GrabFlag>();
         GetComponent<Gun>().playerName = PlayerName;
+        GetComponent<Gun>().playerRealName = PlayerRealName;
+
         
     }
     
@@ -130,6 +138,11 @@ public class Player : NetworkBehaviour
     public string GetPlayerName()
     {
         return PlayerName;
+    }
+    
+    public string GetPlayerRealName()
+    {
+        return PlayerRealName;
     }
 
     [ServerRpc(RequireOwnership = false)]

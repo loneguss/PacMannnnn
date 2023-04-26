@@ -6,6 +6,8 @@ public class Gun : NetworkBehaviour
     public Transform firePoint;
     public GameObject bulletPrefab;
     public string playerName;
+    public string playerRealName;
+
 
     public float bulletSpeed = 20f;
     public float fireRate = 0.5f;
@@ -40,7 +42,7 @@ public class Gun : NetworkBehaviour
         if (!isGunActive) return;
         
         Debug.Log("Shoot");
-        SpawnBulletServerRpc(playerName);
+        SpawnBulletServerRpc(playerName,playerRealName);
         nextFireTime = Time.time + 1f / fireRate;
 
         RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.up);
@@ -55,11 +57,13 @@ public class Gun : NetworkBehaviour
 
     
     [ServerRpc] 
-    void SpawnBulletServerRpc(string _playerName)
+    void SpawnBulletServerRpc(string _playerName,string _playerRealName)
     {
         Bullet bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation).GetComponent<Bullet>();
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         bullet.ownerName = _playerName;
+        bullet.realName = _playerRealName;
+
 
         bullet.GetComponent<NetworkObject>().Spawn(true);
         Debug.Log(playerName);
