@@ -13,6 +13,8 @@ public class DisplayName : NetworkBehaviour
         
         string myName = SetPlayerName.Instance.GetName();
         setNameServerRpc(myName);
+        HideName();
+
     }
 
 
@@ -26,5 +28,11 @@ public class DisplayName : NetworkBehaviour
     void setNameClientRpc(string _name)
     {
         GetComponent<TextMeshPro>().text = _name;
+    }
+
+    void HideName()
+    {
+        GetComponent<TextMeshPro>().text = "";
+        
     }
 }
