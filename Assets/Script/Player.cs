@@ -71,11 +71,17 @@ public class Player : NetworkBehaviour
 
     public void Dead()
     {
+        // grabFlag.DropFlagDeadServerRpc();
         grabFlag.DropFlagServerRpc();
         
         isDead = true;
         Debug.Log("U Dead" + PlayerName);
-        
+        if (isDead)
+        {
+            // grabFlag.DropFlagServerRpc();
+            grabFlag.IsGrab = false;
+            grabFlag.FlagSprite.enabled = false;
+        }
         _playerTeleport.Teleport(playerBase.gameObject);
 
         Vector3 des = new Vector3();

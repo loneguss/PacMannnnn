@@ -5,19 +5,30 @@ using UnityEngine;
 public class GrabFlag : NetworkBehaviour
 {
     [SerializeField] private SpriteRenderer flagSprite;
+
+    public SpriteRenderer FlagSprite
+    {
+        get => flagSprite;
+        set => flagSprite = value;
+    }
+    
     private Player _player;
     private PointCounter _pointCounter;
-    private Flag _flag;
     private FlagPoint _flagPoint;
     private GameManager _gameManager;
     private FlagDrop _flagDrop;
 
     [SerializeField] private bool isGrab = false;
 
+    public bool IsGrab
+    {
+        get => isGrab;
+        set => isGrab = value;
+    }
+
     // Start is called before the first frame update
     private void Awake()
     {
-        _flag = FindObjectOfType<Flag>().GetComponent<Flag>();
     }
 
     void Start()
@@ -88,19 +99,32 @@ public class GrabFlag : NetworkBehaviour
             isGrab = true;
         }
     }
+    // [ServerRpc]
+    // public void DropFlagDeadServerRpc()
+    // {
+    //      if (isGrab && flagSprite.enabled)
+    //      {
+    //          Debug.Log($"isGrab : {isGrab} | flagSprite.enabled : {flagSprite.enabled}");
+    //          _flagDrop.DropFlagServerRpc();
+    //      } 
+    //      DropFlagClientRpc();
+    // }
+    
     [ServerRpc]
     public void DropFlagServerRpc()
     {
         if (isGrab && flagSprite.enabled)
         {
+            Debug.Log($"isGrab : {isGrab} | flagSprite.enabled : {flagSprite.enabled}");
             _flagDrop.DropFlagServerRpc();
-        }
+        } 
         DropFlagClientRpc();
     }
+    
     [ClientRpc]
     public void DropFlagClientRpc()
     {
-        //Debug.Log("Drop Flag " + _flag.team);
+        Debug.Log("Drop Flag");
         isGrab = false;
         flagSprite.enabled = false;
     }
