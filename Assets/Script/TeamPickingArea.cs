@@ -15,6 +15,15 @@ public class TeamPickingArea : NetworkBehaviour
         col.gameObject.GetComponent<Player>().SetTeamServerRpc(Team);
         FindObjectOfType<Lobby>().AddPlayerInTeamServerRpc(Team);
     }
+    
+    private void OnTriggerStay2D(Collider2D col)
+    {
+        if (!IsServer) return;
+        if (!col.transform.CompareTag("Player")) return;
+        
+        col.gameObject.GetComponent<Player>().SetTeamServerRpc(Team);
+        FindObjectOfType<Lobby>().AddPlayerInTeamServerRpc(Team);
+    }
     private void OnTriggerExit2D(Collider2D col)
     {
         if (!check) return;

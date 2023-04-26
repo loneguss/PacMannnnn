@@ -2,14 +2,18 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.Netcode;
 using UnityEngine;
 
-public class SetPlayerName : MonoBehaviour
+public class SetPlayerName : NetworkBehaviour
 {
     public static SetPlayerName Instance;
     
     [SerializeField] private TMP_InputField name;
+    
     private string playerName;
+    
+
 
     public void SetName()
     {

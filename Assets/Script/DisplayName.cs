@@ -7,9 +7,10 @@ using UnityEngine;
 
 public class DisplayName : NetworkBehaviour
 {
-    private void Start()
+    private void Update()
     {
         if(!IsOwner) return;
+        
         string myName = SetPlayerName.Instance.GetName();
         setNameServerRpc(myName);
     }
@@ -25,6 +26,5 @@ public class DisplayName : NetworkBehaviour
     void setNameClientRpc(string _name)
     {
         GetComponent<TextMeshPro>().text = _name;
-        Debug.Log("dewdw");
     }
 }
