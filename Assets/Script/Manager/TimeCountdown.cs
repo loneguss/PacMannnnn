@@ -6,6 +6,7 @@ using UnityEngine;
 public class TimeCountdown : NetworkBehaviour
 {
     private GameManager _gameManager;
+    private WinLose _winLose;
     [Header("Time")]
     [SerializeField] private float timeLimit = 600f;
     
@@ -39,6 +40,7 @@ public class TimeCountdown : NetworkBehaviour
     void Start()
     {
         _gameManager = GetComponent<GameManager>();
+        _winLose = GetComponent<WinLose>();
         _timeLeftServer = timeLimit;
     }
     
@@ -70,7 +72,12 @@ public class TimeCountdown : NetworkBehaviour
                 
                 timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
             }
-            if(_timeLeftServer <= 0 && _timeLeftClient <= 0) timeText.text = "Time's Up!";
+
+            if (_timeLeftServer <= 0 && _timeLeftClient <= 0)
+            {
+                timeText.text = "Time's Up!";
+                _winLose.WinnerPanelServerRpc();
+            }
             DisplayTimeClientRpc(timeText.text);
         }
         

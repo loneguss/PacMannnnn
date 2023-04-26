@@ -45,6 +45,8 @@ public class GameManager : NetworkBehaviour
         }
     }
 
+    #region -Flag Respawn-
+    
     public IEnumerator RedFlagSpawn()
     {
         yield return new WaitForSeconds(2f);
@@ -74,6 +76,10 @@ public class GameManager : NetworkBehaviour
     {
         StartCoroutine(BlueFlagSpawn());
     }
+
+    #endregion
+    
+    
     
     // [ClientRpc]
     // public void RedFlagSpawnClientRpc()
@@ -86,8 +92,8 @@ public class GameManager : NetworkBehaviour
     // {
     //     StartCoroutine(BlueFlagSpawn());
     // }
-    
-    
+
+    #region -Display UI-
 
     [ClientRpc]
     public void DisplayUIClientRpc()
@@ -101,7 +107,12 @@ public class GameManager : NetworkBehaviour
     {
         DisplayUIClientRpc();
     }
-    
+
+    #endregion
+
+
+    #region -Start Game-
+
     [ServerRpc]
     public void StartGameServerRpc()
     {
@@ -136,6 +147,9 @@ public class GameManager : NetworkBehaviour
 
         isGame = true;
     }
+
+    #endregion
+    
 
     public bool GetIsGame()
     {
