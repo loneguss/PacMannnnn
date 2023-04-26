@@ -10,6 +10,7 @@ public class GrabFlag : NetworkBehaviour
     private Flag _flag;
     private FlagPoint _flagPoint;
     private GameManager _gameManager;
+    private FlagDrop _flagDrop;
 
     [SerializeField] private bool isGrab = false;
 
@@ -22,11 +23,9 @@ public class GrabFlag : NetworkBehaviour
     void Start()
     {
         _player = GetComponent<Player>();
+        _flagDrop = GetComponent<FlagDrop>();
         _pointCounter = FindObjectOfType<PointCounter>().GetComponent<PointCounter>();
         _gameManager = FindObjectOfType<GameManager>().GetComponent<GameManager>();
-
-        isGrab = false;
-        flagSprite.enabled = false;
     }
 
     // Update is called once per frame
@@ -75,7 +74,7 @@ public class GrabFlag : NetworkBehaviour
                 GrabFlagClientRpc(Color.red);
             }
         }
-        else DropFlagClientRpc();
+        else DropFlagServerRpc();
     }
     
     [ClientRpc]
@@ -89,11 +88,19 @@ public class GrabFlag : NetworkBehaviour
             isGrab = true;
         }
     }
-    
+    [ServerRpc]
+    public void DropFlagServerRpc()
+    {
+        if (isGrab && flagSprite.enabled)
+        {
+            _flagDrop.DropFlagServerRpc();
+        }
+        DropFlagClientRpc();
+    }
     [ClientRpc]
     public void DropFlagClientRpc()
     {
-        Debug.Log("Drop Flag " + _flag.team);
+        //Debug.Log("Drop Flag " + _flag.team);
         isGrab = false;
         flagSprite.enabled = false;
     }

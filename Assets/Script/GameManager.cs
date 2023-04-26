@@ -4,27 +4,26 @@ using UnityEngine;
 
 public class GameManager : NetworkBehaviour
 {
+    [Header("UI Elements")]
     [SerializeField] private GameObject scoreTeamText;
     [SerializeField] private GameObject timeText;
     
+    [Header("Flag Respawn")]
     [SerializeField] private Transform blueFlagRespawn;
     [SerializeField] private Transform redFlagRespawn;
-
-    [SerializeField] private GameObject redBase, blueBase;
-
-    private bool isGame = false;
     
     private Transform spawnBlueFlagTransform;
     private Transform spawnRedFlagTransform;
+    
+    [Header("Base")]
+    [SerializeField] private GameObject redBase, blueBase;
+
+    private bool isGame = false;
+
+    private Player _player;
 
     [SerializeField] private GameObject[] test;
-
-    private Transform spawnFlagTransform;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    
 
     // Update is called once per frame
     void Update()
@@ -42,8 +41,6 @@ public class GameManager : NetworkBehaviour
         if (!IsOwner) yield break;
         spawnRedFlagTransform = Instantiate(redFlagRespawn);
         spawnRedFlagTransform.GetComponent<NetworkObject>().Spawn(true);
-        
-        
     }
     
     public IEnumerator BlueFlagSpawn()

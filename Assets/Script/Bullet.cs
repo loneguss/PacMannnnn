@@ -15,12 +15,6 @@ public class Bullet : NetworkBehaviour
         StartCoroutine(DeleteBullet(2));
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnCollisionEnter2D(Collision2D col)
     {
         Player player = col.gameObject.GetComponent<Player>();
