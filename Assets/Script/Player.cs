@@ -78,7 +78,6 @@ public class Player : NetworkBehaviour
         Debug.Log("U Dead" + PlayerName);
         if (isDead)
         {
-            // grabFlag.DropFlagServerRpc();
             grabFlag.IsGrab = false;
             grabFlag.FlagSprite.enabled = false;
         }

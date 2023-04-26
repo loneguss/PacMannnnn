@@ -57,6 +57,8 @@ public class GrabFlag : NetworkBehaviour
                 _pointCounter.FlagPointServerRpc(1, 0);
                 _gameManager.BlueFlagSpawnServerRpc();
                 GrabFlagServerRpc();
+                // isGrab = false;
+                // flagSprite.enabled = false;
             }
 
             if (_player.GetPlayerTeam() == Player.Team.Blue && col.gameObject.GetComponent<FlagPoint>().FlagPointTeam == Player.Team.Blue)
@@ -64,6 +66,8 @@ public class GrabFlag : NetworkBehaviour
                 _pointCounter.FlagPointServerRpc(0, 1);
                 _gameManager.RedFlagSpawnServerRpc();
                 GrabFlagServerRpc();
+                // isGrab = false;
+                // flagSprite.enabled = false;
             }
         }
     }
@@ -85,7 +89,11 @@ public class GrabFlag : NetworkBehaviour
                 GrabFlagClientRpc(Color.red);
             }
         }
-        else DropFlagServerRpc();
+        else
+        {
+            Debug.Log("in else statement");
+            DropFlagClientRpc();
+        }
     }
     
     [ClientRpc]
@@ -99,15 +107,16 @@ public class GrabFlag : NetworkBehaviour
             isGrab = true;
         }
     }
+
     // [ServerRpc]
-    // public void DropFlagDeadServerRpc()
+    // public void DropDeadFlagServerRpc()
     // {
-    //      if (isGrab && flagSprite.enabled)
-    //      {
-    //          Debug.Log($"isGrab : {isGrab} | flagSprite.enabled : {flagSprite.enabled}");
-    //          _flagDrop.DropFlagServerRpc();
-    //      } 
-    //      DropFlagClientRpc();
+    //     if (isGrab && flagSprite.enabled)
+    //     {
+    //         // Debug.Log($"isGrab : {isGrab} | flagSprite.enabled : {flagSprite.enabled}");
+    //         _flagDrop.DropFlagServerRpc();
+    //     } 
+    //     DropFlagClientRpc();
     // }
     
     [ServerRpc]
@@ -115,10 +124,10 @@ public class GrabFlag : NetworkBehaviour
     {
         if (isGrab && flagSprite.enabled)
         {
-            Debug.Log($"isGrab : {isGrab} | flagSprite.enabled : {flagSprite.enabled}");
-            _flagDrop.DropFlagServerRpc();
-        } 
-        DropFlagClientRpc();
+            // DropFlagClientRpc();
+            // _flagDrop.DropFlagDeadServerRpc();
+            _flagDrop.DropFlagDeadClientRpc();
+        }
     }
     
     [ClientRpc]
