@@ -104,7 +104,7 @@ public class GrabFlag : NetworkBehaviour
     {
         if (isGrab && flagSprite.enabled)
         {
-            _flagDrop.DropFlagDeadClientRpc();
+            _flagDrop.DropFlagDeadServerRpc();
         }
     }
     
