@@ -29,22 +29,6 @@ public class TimeCountdown : NetworkBehaviour
         }
     }
 
-    public void DisplayTime()
-    {
-        float minutes = Mathf.FloorToInt(_timeLeftServer / 60);
-        float seconds = Mathf.FloorToInt(_timeLeftServer % 60);
-        if (_timeLeftServer > 0)
-        {
-            Debug.Log(NetworkManager.NetworkTimeSystem.LocalTime);
-            _timeLeftServer -= Time.deltaTime;
-            minutes -= Time.deltaTime;
-            seconds -= Time.deltaTime;
-            
-            Debug.Log(timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds) );
-        }
-        if(_timeLeftServer <= 0) timeText.text = "Time's Up!";
-    }
-    
     [ServerRpc(RequireOwnership = false)]
     public void DisplayTimeServerRpc()
     {

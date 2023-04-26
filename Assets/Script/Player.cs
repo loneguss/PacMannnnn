@@ -16,7 +16,17 @@ public class Player : NetworkBehaviour
 
 
     [SerializeField] private GameObject playerBase;
+    [SerializeField] private Transform playerPos;
+
+    public Transform PlayerPos
+    {
+        get => playerPos;
+        set => playerPos = value;
+    }
     private bool isDead = false;
+    
+    private GrabFlag grabFlag;
+    
     [SerializeField] private PlayerTeleport _playerTeleport;
 
     [SerializeField] private string PlayerName;
@@ -47,12 +57,13 @@ public class Player : NetworkBehaviour
         
         playerBase = GameObject.FindWithTag("Base");
         _playerTeleport = GetComponent<PlayerTeleport>();
-
         //GameObject.FindObjectOfType<Lobby>().ChangeMaxPlayerServerRpc();
         
         PlayerName = "Player:" + NetworkManager.Singleton.LocalClientId.ToString();
 
+        playerPos = this.transform;
 
+        grabFlag = GetComponent<GrabFlag>();
         GetComponent<Gun>().playerName = PlayerName;
         
     }
@@ -65,8 +76,16 @@ public class Player : NetworkBehaviour
 
     public void Dead()
     {
+        // grabFlag.DropFlagDeadServerRpc();
+        grabFlag.DropFlagServerRpc();
+        
         isDead = true;
         Debug.Log("U Dead" + PlayerName);
+        if (isDead)
+        {
+            grabFlag.IsGrab = false;
+            grabFlag.FlagSprite.enabled = false;
+        }
         _playerTeleport.Teleport(playerBase.gameObject);
 
         Vector3 des = new Vector3();

@@ -2423,8 +2423,8 @@ MonoBehaviour:
       colorBlindnessType: 0
       colorBlindnessStrength: 1
   m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
-  m_ShowToolkit: 0
-  m_ShowCustomSorter: 0
+  m_ShowToolkit: 1
+  m_ShowCustomSorter: 1
   breakBeforeColorGrading: 0
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
@@ -4831,6 +4831,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
       objectReference: {fileID: 0}
+    - target: {fileID: 1293890194030084685, guid: 25f17f7e4b5151246ba23527b21c2b75, type: 3}
+      propertyPath: m_SortingOrder
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 1293890194030084720, guid: 25f17f7e4b5151246ba23527b21c2b75, type: 3}
       propertyPath: m_Name
       value: RedFlag
@@ -6972,7 +6976,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 402397736
+  GlobalObjectIdHash: 2410624104
   AlwaysReplicateAsRoot: 0
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
@@ -9741,6 +9745,7 @@ GameObject:
   - component: {fileID: 2029806698}
   - component: {fileID: 2029806702}
   - component: {fileID: 2029806703}
+  - component: {fileID: 2029806704}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -9762,7 +9767,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GlobalObjectIdHash: 2499275764
   AlwaysReplicateAsRoot: 0
-  DontDestroyWithOwner: 1
+  DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
 --- !u!114 &2029806699
 MonoBehaviour:
@@ -9799,6 +9804,7 @@ MonoBehaviour:
   redBase: {fileID: 1003812387}
   blueBase: {fileID: 471857153}
   test: []
+  playerName: 
 --- !u!4 &2029806701
 Transform:
   m_ObjectHideFlags: 0
@@ -9846,6 +9852,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeLimit: 600
   timeText: {fileID: 1335925290}
+--- !u!114 &2029806704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2029806697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d89328078b4d7246bccae8b1cfd79f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: {fileID: 0}
 --- !u!1 &2035233901
 GameObject:
   m_ObjectHideFlags: 0
@@ -10121,17 +10140,32 @@ MonoBehaviour:
       SourceHashToOverride: 0
       OverridingTargetPrefab: {fileID: 0}
     - Override: 0
-      Prefab: {fileID: 2029806697}
-      SourcePrefabToOverride: {fileID: 0}
-      SourceHashToOverride: 0
-      OverridingTargetPrefab: {fileID: 0}
-    - Override: 0
       Prefab: {fileID: 1293890194030084720, guid: 25f17f7e4b5151246ba23527b21c2b75, type: 3}
       SourcePrefabToOverride: {fileID: 0}
       SourceHashToOverride: 0
       OverridingTargetPrefab: {fileID: 0}
     - Override: 0
       Prefab: {fileID: 6127666820020743072, guid: 05888bc3ac5e81649a33c20ebc80a5b5, type: 3}
+      SourcePrefabToOverride: {fileID: 0}
+      SourceHashToOverride: 0
+      OverridingTargetPrefab: {fileID: 0}
+    - Override: 0
+      Prefab: {fileID: 1817125649848640892, guid: d1032c891bdd18a4a9d3208f1eb09010, type: 3}
+      SourcePrefabToOverride: {fileID: 0}
+      SourceHashToOverride: 0
+      OverridingTargetPrefab: {fileID: 0}
+    - Override: 0
+      Prefab: {fileID: 1293890194030084720, guid: c8623b5b7e305bc4c8d4e5ee8071e07c, type: 3}
+      SourcePrefabToOverride: {fileID: 0}
+      SourceHashToOverride: 0
+      OverridingTargetPrefab: {fileID: 0}
+    - Override: 0
+      Prefab: {fileID: 7629675892017995325, guid: b617cba85cda0be4fb33c9d75bfda563, type: 3}
+      SourcePrefabToOverride: {fileID: 0}
+      SourceHashToOverride: 0
+      OverridingTargetPrefab: {fileID: 0}
+    - Override: 0
+      Prefab: {fileID: 2029806697}
       SourcePrefabToOverride: {fileID: 0}
       SourceHashToOverride: 0
       OverridingTargetPrefab: {fileID: 0}

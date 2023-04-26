@@ -4,20 +4,26 @@ using UnityEngine;
 
 public class GameManager : NetworkBehaviour
 {
+    [Header("UI Elements")]
     [SerializeField] private GameObject scoreTeamText;
     [SerializeField] private GameObject timeText;
     
+    [Header("Flag Respawn")]
     [SerializeField] private Transform blueFlagRespawn;
     [SerializeField] private Transform redFlagRespawn;
-
-    [SerializeField] private GameObject redBase, blueBase;
-
-    private bool isGame = false;
     
     private Transform spawnBlueFlagTransform;
     private Transform spawnRedFlagTransform;
+    
+    [Header("Base")]
+    [SerializeField] private GameObject redBase, blueBase;
+
+    private bool isGame = false;
+
+    private Player _player;
 
     [SerializeField] private GameObject[] test;
+    
 
     private Transform spawnFlagTransform;
 
@@ -43,6 +49,7 @@ public class GameManager : NetworkBehaviour
     {
         yield return new WaitForSeconds(2f);
         Debug.Log("Red Flag Spawned");
+        if (!IsOwner) yield break;
         spawnRedFlagTransform = Instantiate(redFlagRespawn);
         spawnRedFlagTransform.GetComponent<NetworkObject>().Spawn(true);
     }
@@ -50,10 +57,35 @@ public class GameManager : NetworkBehaviour
     public IEnumerator BlueFlagSpawn()
     {
         yield return new WaitForSeconds(2f);
-        Debug.Log("Blue Flag Spawned"); 
+        Debug.Log("Blue Flag Spawned");
+        if (!IsOwner) yield break;
         spawnBlueFlagTransform = Instantiate(blueFlagRespawn);
         spawnBlueFlagTransform.GetComponent<NetworkObject>().Spawn(true);
     }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void RedFlagSpawnServerRpc()
+    {
+        StartCoroutine(RedFlagSpawn());
+    }
+    
+    [ServerRpc(RequireOwnership = false)]
+    public void BlueFlagSpawnServerRpc()
+    {
+        StartCoroutine(BlueFlagSpawn());
+    }
+    
+    // [ClientRpc]
+    // public void RedFlagSpawnClientRpc()
+    // {
+    //     StartCoroutine(RedFlagSpawn());
+    // }
+    //
+    // [ClientRpc]
+    // public void BlueFlagSpawnClientRpc()
+    // {
+    //     StartCoroutine(BlueFlagSpawn());
+    // }
     
     
 

@@ -37,7 +37,7 @@ public class PointCounter : NetworkBehaviour
     }
     
     [ClientRpc]
-    public void FlagPointClientRpc(int _team1Score, int _team2score)
+    void FlagPointClientRpc(int _team1Score, int _team2score)
     {
         team1Score = _team1Score;
         team2Score = _team2score;
@@ -45,7 +45,6 @@ public class PointCounter : NetworkBehaviour
         team1ScoreText.text =  team1Score.ToString();
         team2ScoreText.text =  team2Score.ToString();
 
-        
         _gameManager.DisplayUIServerRpc();
         _gameManager.DisplayUIClientRpc();
     }

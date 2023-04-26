@@ -1,4 +1,3 @@
-using System;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -10,23 +9,26 @@ public class Flag : NetworkBehaviour
      {
          if (col.CompareTag("Player"))
          {
-             if(col.GetComponent<Player>().GetPlayerTeam() == Player.Team.Blue && team == Player.Team.Red)
+             if(col.GetComponent<Player>().GetPlayerTeam() != team)
              {
-                Debug.Log("Blue team take a flag");
+                Debug.Log("Flag has taken");
                 DestroyFlagServerRpc();
-             }
-             else if(col.GetComponent<Player>().GetPlayerTeam() == Player.Team.Red && team == Player.Team.Blue)
-             {
-                 Debug.Log("Red team take a flag");
-                 DestroyFlagServerRpc();
              }
          }
      }
     
     [ServerRpc(RequireOwnership = false)]
-    void DestroyFlagServerRpc()
+    public void DestroyFlagServerRpc()
     {
-        Debug.Log("Destroy Flag");
+        Debug.Log("Destroy flag in Server ?");
         GetComponent<NetworkObject>().Despawn(true);
+        DestroyFlagClientRpc();
+    }
+
+    [ClientRpc]
+    void DestroyFlagClientRpc()
+    {
+        Debug.Log("Destroy flag in Client ?");
+        Destroy(this.gameObject);
     }
 }
