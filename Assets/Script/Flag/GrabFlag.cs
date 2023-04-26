@@ -26,11 +26,6 @@ public class GrabFlag : NetworkBehaviour
         set => isGrab = value;
     }
 
-    // Start is called before the first frame update
-    private void Awake()
-    {
-    }
-
     void Start()
     {
         _player = GetComponent<Player>();
@@ -57,8 +52,6 @@ public class GrabFlag : NetworkBehaviour
                 _pointCounter.FlagPointServerRpc(1, 0);
                 _gameManager.BlueFlagSpawnServerRpc();
                 GrabFlagServerRpc();
-                // isGrab = false;
-                // flagSprite.enabled = false;
             }
 
             if (_player.GetPlayerTeam() == Player.Team.Blue && col.gameObject.GetComponent<FlagPoint>().FlagPointTeam == Player.Team.Blue)
@@ -66,8 +59,6 @@ public class GrabFlag : NetworkBehaviour
                 _pointCounter.FlagPointServerRpc(0, 1);
                 _gameManager.RedFlagSpawnServerRpc();
                 GrabFlagServerRpc();
-                // isGrab = false;
-                // flagSprite.enabled = false;
             }
         }
     }
@@ -108,24 +99,11 @@ public class GrabFlag : NetworkBehaviour
         }
     }
 
-    // [ServerRpc]
-    // public void DropDeadFlagServerRpc()
-    // {
-    //     if (isGrab && flagSprite.enabled)
-    //     {
-    //         // Debug.Log($"isGrab : {isGrab} | flagSprite.enabled : {flagSprite.enabled}");
-    //         _flagDrop.DropFlagServerRpc();
-    //     } 
-    //     DropFlagClientRpc();
-    // }
-    
     [ServerRpc]
     public void DropFlagServerRpc()
     {
         if (isGrab && flagSprite.enabled)
         {
-            // DropFlagClientRpc();
-            // _flagDrop.DropFlagDeadServerRpc();
             _flagDrop.DropFlagDeadClientRpc();
         }
     }

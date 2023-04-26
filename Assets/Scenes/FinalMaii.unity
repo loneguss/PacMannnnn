@@ -6976,7 +6976,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 402397736
+  GlobalObjectIdHash: 2410624104
   AlwaysReplicateAsRoot: 0
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
@@ -9745,6 +9745,7 @@ GameObject:
   - component: {fileID: 2029806698}
   - component: {fileID: 2029806702}
   - component: {fileID: 2029806703}
+  - component: {fileID: 2029806704}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -9803,6 +9804,7 @@ MonoBehaviour:
   redBase: {fileID: 1003812387}
   blueBase: {fileID: 471857153}
   test: []
+  playerName: 
 --- !u!4 &2029806701
 Transform:
   m_ObjectHideFlags: 0
@@ -9850,6 +9852,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeLimit: 600
   timeText: {fileID: 1335925290}
+--- !u!114 &2029806704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2029806697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d89328078b4d7246bccae8b1cfd79f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: {fileID: 0}
 --- !u!1 &2035233901
 GameObject:
   m_ObjectHideFlags: 0
@@ -10145,11 +10160,16 @@ MonoBehaviour:
       SourceHashToOverride: 0
       OverridingTargetPrefab: {fileID: 0}
     - Override: 0
+      Prefab: {fileID: 7629675892017995325, guid: b617cba85cda0be4fb33c9d75bfda563, type: 3}
+      SourcePrefabToOverride: {fileID: 0}
+      SourceHashToOverride: 0
+      OverridingTargetPrefab: {fileID: 0}
+    - Override: 0
       Prefab: {fileID: 2029806697}
       SourcePrefabToOverride: {fileID: 0}
       SourceHashToOverride: 0
       OverridingTargetPrefab: {fileID: 0}
-    TickRate: 30
+    TickRate: 64
     ClientConnectionBufferTimeout: 10
     ConnectionApproval: 0
     ConnectionData: 
