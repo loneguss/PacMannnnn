@@ -19,22 +19,6 @@ public class FlagDrop : MonoBehaviour
     [ServerRpc]
     public void DropFlagDeadServerRpc()
     {
-        // Debug.Log("Dropping Flag Deaddd");
-        // _grabFlag.DropFlagClientRpc();
-        //
-        // Debug.Log($"isGrab : {_grabFlag.IsGrab} | flagSprite.enabled : {_grabFlag.FlagSprite.enabled}");
-        //
-        // if (_player.GetPlayerTeam() == Player.Team.Blue)
-        // {
-        //     Debug.Log("Red Flag Dropped");
-        //     Instantiate(flagRed, _player.PlayerPos.position, Quaternion.identity).GetComponent<NetworkObject>().Spawn(true);
-        // }
-        // else
-        // {
-        //     Debug.Log("Blue Flag Dropped");
-        //     Instantiate(flagBlue, _player.PlayerPos.position, Quaternion.identity).GetComponent<NetworkObject>().Spawn(true);
-        // }
-        
         DropFlagDeadClientRpc();
     }
 
