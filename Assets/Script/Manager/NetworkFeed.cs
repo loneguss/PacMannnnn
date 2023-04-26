@@ -11,7 +11,8 @@ public class NetworkFeed : NetworkBehaviour
     {
         Kill,
         stoleFlag,
-        finishFlag
+        finishFlag,
+        DropFlag,
     }
 
     [SerializeField] private Sprite[] feedSprite;
@@ -46,6 +47,15 @@ public class NetworkFeed : NetworkBehaviour
         {
             return feedSprite[0];
         }
+        if (_feedType == FeedType.stoleFlag)
+        {
+            return feedSprite[1];
+        }
+        if (_feedType == FeedType.finishFlag)
+        {
+            return feedSprite[2];
+        }
+    
         
         
         return feedSprite[0];
