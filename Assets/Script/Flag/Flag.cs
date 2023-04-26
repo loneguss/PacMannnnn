@@ -23,7 +23,7 @@ public class Flag : NetworkBehaviour
      }
     
     [ServerRpc(RequireOwnership = false)]
-    void DestroyFlagServerRpc()
+    public void DestroyFlagServerRpc()
     {
         Debug.Log("Destroy flag in Server ?");
         GetComponent<NetworkObject>().Despawn(true);

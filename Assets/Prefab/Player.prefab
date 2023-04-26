@@ -538,6 +538,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flagSprite: {fileID: 2629621217568214083}
+  isGrab: 0
 --- !u!95 &8002186876435401788
 Animator:
   serializedVersion: 5
