@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using Unity.Netcode;
 using UnityEngine;
@@ -56,7 +54,6 @@ public class NetworkFeed : NetworkBehaviour
             return feedSprite[2];
         }
     
-        
         
         return feedSprite[0];
     }

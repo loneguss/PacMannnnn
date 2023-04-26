@@ -13,6 +13,7 @@ public class Flag : NetworkBehaviour
              {
                 Debug.Log("Flag has taken");
                 DestroyFlagServerRpc();
+                FindObjectOfType<NetworkFeed>().Feed(col.GetComponent<Player>().GetPlayerRealName(), NetworkFeed.FeedType.stoleFlag," ");
              }
          }
      }

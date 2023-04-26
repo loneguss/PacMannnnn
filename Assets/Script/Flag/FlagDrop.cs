@@ -27,6 +27,7 @@ public class FlagDrop : MonoBehaviour
     {
         Debug.Log("Dropping Flag Deaddd");
         _grabFlag.DropFlagClientRpc();
+        FindObjectOfType<NetworkFeed>().Feed(_player.GetPlayerRealName(), NetworkFeed.FeedType.DropFlag, " ");
         
         Debug.Log($"isGrab : {_grabFlag.IsGrab} | flagSprite.enabled : {_grabFlag.FlagSprite.enabled}");
         

@@ -106,6 +106,7 @@ public class Player : NetworkBehaviour
             grabFlag.IsGrab = false;
             grabFlag.FlagSprite.enabled = false;
             Invoke("DeadDelay", 10f);
+            isDead = false;
         }
         _playerTeleport.Teleport(playerBase.gameObject);
 
