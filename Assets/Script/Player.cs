@@ -25,6 +25,12 @@ public class Player : NetworkBehaviour
     }
     private bool isDead = false;
     
+    public bool IsDead
+    {
+        get => isDead;
+        set => isDead = value;
+    }
+    
     private GrabFlag grabFlag;
     
     [SerializeField] private PlayerTeleport _playerTeleport;
@@ -74,9 +80,15 @@ public class Player : NetworkBehaviour
 
     }
 
+    public bool DeadDelay()
+    {
+        if (isDead) return true;
+        
+        return false;
+    }
+
     public void Dead()
     {
-        // grabFlag.DropFlagDeadServerRpc();
         grabFlag.DropFlagServerRpc();
         
         isDead = true;
@@ -85,6 +97,7 @@ public class Player : NetworkBehaviour
         {
             grabFlag.IsGrab = false;
             grabFlag.FlagSprite.enabled = false;
+            Invoke("DeadDelay", 10f);
         }
         _playerTeleport.Teleport(playerBase.gameObject);
 

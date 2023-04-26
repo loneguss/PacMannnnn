@@ -9,11 +9,15 @@ public class Flag : NetworkBehaviour
      {
          if (col.CompareTag("Player"))
          {
-             if(col.GetComponent<Player>().GetPlayerTeam() != team)
+             if(col.GetComponent<Player>().GetPlayerTeam() != team&& !col.GetComponent<Player>().DeadDelay())
              {
                 Debug.Log("Flag has taken");
                 DestroyFlagServerRpc();
              }
+             // else if (col.GetComponent<Player>().DeadDelay())
+             // {
+             //     Debug.Log("Wait to take flag");
+             // }
          }
      }
     
