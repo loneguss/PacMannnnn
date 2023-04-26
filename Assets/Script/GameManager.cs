@@ -55,29 +55,29 @@ public class GameManager : NetworkBehaviour
         spawnBlueFlagTransform.GetComponent<NetworkObject>().Spawn(true);
     }
 
-    // [ServerRpc]
-    // public void RedFlagSpawnServerRpc()
-    // {
-    //     StartCoroutine(RedFlagSpawn());
-    // }
-    //
-    // [ServerRpc]
-    // public void BlueFlagSpawnServerRpc()
-    // {
-    //     StartCoroutine(BlueFlagSpawn());
-    // }
-    
-    [ClientRpc]
-    public void RedFlagSpawnClientRpc()
+    [ServerRpc(RequireOwnership = false)]
+    public void RedFlagSpawnServerRpc()
     {
         StartCoroutine(RedFlagSpawn());
     }
     
-    [ClientRpc]
-    public void BlueFlagSpawnClientRpc()
+    [ServerRpc(RequireOwnership = false)]
+    public void BlueFlagSpawnServerRpc()
     {
         StartCoroutine(BlueFlagSpawn());
     }
+    
+    // [ClientRpc]
+    // public void RedFlagSpawnClientRpc()
+    // {
+    //     StartCoroutine(RedFlagSpawn());
+    // }
+    //
+    // [ClientRpc]
+    // public void BlueFlagSpawnClientRpc()
+    // {
+    //     StartCoroutine(BlueFlagSpawn());
+    // }
     
     
 
