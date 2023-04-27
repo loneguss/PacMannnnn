@@ -15,26 +15,36 @@ public class Bullet : NetworkBehaviour
         if (!IsOwner) return;
         SetOwnerServerRpc();
         StartCoroutine(DeleteBullet(2));
+        
     }
 
+
+    public Player targetPlayer;
     private void OnCollisionEnter2D(Collision2D col)
-    {
-        Player player = col.gameObject.GetComponent<Player>();
-        
-        if (player != null)
+    { 
+        if(IsServer)
         {
-            if (player.GetPlayerName() == ownerName)
+            Player player = col.gameObject.GetComponent<Player>();
+            targetPlayer = player;
+            if (targetPlayer != null)
             {
-                Debug.Log("same name");
-                return;
-            }
-            SpawnImpactServerRpc(col.transform.position);
-            player.Dead();
-            StartCoroutine(DeleteBullet(0.01f));
-            FindObjectOfType<NetworkFeed>().Feed(realName,NetworkFeed.FeedType.Kill,player.GetPlayerRealName());
+                if (player.GetPlayerName() == ownerName)
+                {
+                    Debug.Log("same name");
+                    return;
+                }
+                
+                SpawnImpactServerRpc(col.transform.position);
+                
+                //on player instead
+                //player.Dead();
+                //FindObjectOfType<NetworkFeed>().Feed(realName,NetworkFeed.FeedType.Kill,player.GetPlayerRealName());
            
+            }
         }
+
     }
+    
 
     [ServerRpc(RequireOwnership = false)]
     private void SpawnImpactServerRpc(Vector3 pos)
@@ -43,6 +53,12 @@ public class Bullet : NetworkBehaviour
         Vector3 newPos = new Vector3(pos.x, pos.y, -10f);
         var _impact = Instantiate(impact, pos, Quaternion.identity);
         _impact.GetComponent<NetworkObject>().Spawn(true);
+    }
+
+    public void DeleteBulletNow()
+    {
+        StartCoroutine(DeleteBullet(0.15f));
+
     }
     
     IEnumerator DeleteBullet(float time)

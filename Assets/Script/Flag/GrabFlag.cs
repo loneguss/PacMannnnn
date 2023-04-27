@@ -100,7 +100,7 @@ public class GrabFlag : NetworkBehaviour
         }
     }
 
-    [ServerRpc]
+    [ServerRpc(RequireOwnership = false)]
     public void DropFlagServerRpc()
     {
         if (isGrab && flagSprite.enabled)
