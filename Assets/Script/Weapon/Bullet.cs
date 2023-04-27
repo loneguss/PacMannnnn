@@ -35,7 +35,7 @@ public class Bullet : NetworkBehaviour
                 }
                 
                 SpawnImpactServerRpc(col.transform.position);
-                
+                this.gameObject.SetActive(false);
                 //on player instead
                 //player.Dead();
                 //FindObjectOfType<NetworkFeed>().Feed(realName,NetworkFeed.FeedType.Kill,player.GetPlayerRealName());
