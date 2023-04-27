@@ -9,15 +9,7 @@ public class TimeCountdown : NetworkBehaviour
     private WinLose _winLose;
     [Header("Time")]
     [SerializeField] private float timeLimit = 600f;
-    
-    // private bool timeoutCheck;
-    //
-    // public bool TimeoutCheck
-    // {
-    //     get => timeoutCheck;
-    //     set => timeoutCheck = value;
-    // }
-    
+
     [Header("Time Server")]
     private float _timeLeftServer;
     public float TimeLeftServer
@@ -75,7 +67,7 @@ public class TimeCountdown : NetworkBehaviour
 
             if (_timeLeftServer <= 0 && _timeLeftClient <= 0)
             {
-                timeText.text = "Time's Up!";
+                DisplayTimeClientRpc("Time's Up!");
                 _winLose.WinnerPanelServerRpc();
             }
             DisplayTimeClientRpc(timeText.text);
@@ -89,16 +81,6 @@ public class TimeCountdown : NetworkBehaviour
 
     #endregion
     
-    // [ClientRpc]
-    // public void CheckTimeOutClientRpc()
-    // {
-    //     if (_timeLeftServer <= 0 && _timeLeftClient <= 0)
-    //     {
-    //         timeoutCheck = true;
-    //     }
-    //     
-    //     timeoutCheck = false;
-    // }
 
     public bool CheckTimeOut()
     {

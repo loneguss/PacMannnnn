@@ -11193,6 +11193,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08e78f170e103d545ace0f4f9cebfe90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameEndPanel: {fileID: 2096470853}
+  panelImg: {fileID: 1030356353}
+  teamWinText: {fileID: 227256908}
 --- !u!1 &2035233901
 GameObject:
   m_ObjectHideFlags: 0

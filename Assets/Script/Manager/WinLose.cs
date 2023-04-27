@@ -1,10 +1,11 @@
 using System;
+using System.Globalization;
 using TMPro;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class WinLose : MonoBehaviour
+public class WinLose : NetworkBehaviour
 {
     private TimeCountdown _timeCountdown;
     private PointCounter _pointCounter;
@@ -18,71 +19,34 @@ public class WinLose : MonoBehaviour
     {
         _timeCountdown = GetComponent<TimeCountdown>();
         _pointCounter = GetComponent<PointCounter>();
-
-        // teamWinText = GetComponent<TextMeshProUGUI>();
-        // panelImg = GetComponent<Image>();
     }
-
-    private void Update()
-    {
-        // WinnerPanelServerRpc();
-    }
-
+    
     [ServerRpc]
     public void WinnerPanelServerRpc()
     {
         if (_timeCountdown.CheckTimeOut())
         {
-            Debug.Log("Game End");
             if (_pointCounter.Team1Score > _pointCounter.Team2Score)
             {
-                // Debug.Log("Red Team Wins !!!");
-                WinnerPanelClientRpc();
-                teamWinText.color = Color.red;
-                teamWinText.text = "Red Team Wins !!!";
-                // panelImg.color = Color.red;
+                WinnerPanelClientRpc(Color.red, "Red Team Wins !!!");
             }
             else if (_pointCounter.Team1Score < _pointCounter.Team2Score)
             {
-                // Debug.Log("Blue Team Wins !!!");
-                WinnerPanelClientRpc();
-                teamWinText.color = Color.blue;
-                teamWinText.text = "Blue Team Wins !!!";
-                // panelImg.color = Color.blue;
+                WinnerPanelClientRpc(Color.blue, "Blue Team Wins !!!");
             }
             else
             {
-                //Debug.Log("Draw !!!");
-                WinnerPanelClientRpc();
-                teamWinText.text = "Draw !!!";
+                WinnerPanelClientRpc(Color.black, "Draw !!!");
             }
         }
-        // if (_timeCountdown.TimeoutCheck)
-        // {
-        //     Debug.Log("Game End");
-        //     if (_pointCounter.Team1Score > _pointCounter.Team2Score)
-        //     {
-        //         Debug.Log("Red Team Wins !!!");
-        //     }
-        //     else if (_pointCounter.Team1Score < _pointCounter.Team2Score)
-        //     {
-        //         Debug.Log("Blue Team Wins !!!");
-        //     }
-        //     else
-        //     {
-        //         Debug.Log("Draw !!!");
-        //     }
-        // }
-        // else
-        // {
-        //     Debug.Log("Game is still going");
-        // }
-        
+
     }
 
     [ClientRpc]
-    public void WinnerPanelClientRpc()
+    public void WinnerPanelClientRpc(Color color, string text)
     {
+        teamWinText.text = text;
+        teamWinText.color = color;
         gameEndPanel.SetActive(true);
         Time.timeScale = 0;
     }

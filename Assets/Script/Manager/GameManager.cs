@@ -79,19 +79,6 @@ public class GameManager : NetworkBehaviour
 
     #endregion
     
-    
-    
-    // [ClientRpc]
-    // public void RedFlagSpawnClientRpc()
-    // {
-    //     StartCoroutine(RedFlagSpawn());
-    // }
-    //
-    // [ClientRpc]
-    // public void BlueFlagSpawnClientRpc()
-    // {
-    //     StartCoroutine(BlueFlagSpawn());
-    // }
 
     #region -Display UI-
 
