@@ -495,7 +495,7 @@ MonoBehaviour:
   bulletSpeed: 1500
   fireRate: 0.5
   isGunActive: 0
-  gun: {fileID: 6464684974644587419}
+  gunSprite: {fileID: 6464684974644587419}
 --- !u!114 &8863772903808110826
 MonoBehaviour:
   m_ObjectHideFlags: 0
