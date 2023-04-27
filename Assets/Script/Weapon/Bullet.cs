@@ -6,7 +6,8 @@ public class Bullet : NetworkBehaviour
 {
     public string ownerName;
     public string realName;
-
+    public GameObject effects;
+    
     [SerializeField] private GameObject impact;
 
     // Start is called before the first frame update
@@ -19,7 +20,7 @@ public class Bullet : NetworkBehaviour
     }
 
 
-    public Player targetPlayer;
+    Player targetPlayer;
     private void OnCollisionEnter2D(Collision2D col)
     { 
         if(IsServer)
@@ -35,11 +36,12 @@ public class Bullet : NetworkBehaviour
                 }
                 
                 SpawnImpactServerRpc(col.transform.position);
-                this.gameObject.SetActive(false);
+                GetComponent<CircleCollider2D>().enabled = false;
+                effects.SetActive(false);
                 //on player instead
                 //player.Dead();
                 //FindObjectOfType<NetworkFeed>().Feed(realName,NetworkFeed.FeedType.Kill,player.GetPlayerRealName());
-           
+
             }
         }
 
