@@ -9,6 +9,7 @@ public class DisplayName : NetworkBehaviour
 {
     private void FixedUpdate()
     {
+        
         if(!IsOwner) return;
         
         string myName = SetPlayerName.Instance.GetName();
