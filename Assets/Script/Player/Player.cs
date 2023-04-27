@@ -141,6 +141,8 @@ public class Player : NetworkBehaviour
                 isDead = false;
             }
 
+            
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             _playerTeleport.Teleport(playerBase.gameObject);
 
             Vector3 des = new Vector3();
