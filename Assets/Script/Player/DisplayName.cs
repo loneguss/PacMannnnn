@@ -7,18 +7,26 @@ using UnityEngine;
 
 public class DisplayName : NetworkBehaviour
 {
-    public override void OnNetworkSpawn()
+   
+
+    private void Start()
     {
         if(!IsOwner) return;
         
         StartCoroutine(RefreshName(0.2f));
+        
     }
 
     IEnumerator RefreshName(float time)
     {
-        yield return new WaitForSeconds(time);
-        string myName = SetPlayerName.Instance.GetName();
-        setNameServerRpc(myName);
+        while (true)
+        {
+            yield return new WaitForSeconds(time);
+            string myName = SetPlayerName.Instance.GetName();
+            setNameServerRpc(myName);
+            Debug.Log(myName);
+        }
+       
     }
 
     private void Update()
@@ -43,7 +51,7 @@ public class DisplayName : NetworkBehaviour
 
     void HideName()
     {
-        GetComponent<TextMeshPro>().text = "";
-        
+        GetComponent<TextMeshPro>().enabled = false;
+
     }
 }
