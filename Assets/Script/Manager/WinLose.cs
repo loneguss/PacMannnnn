@@ -30,7 +30,7 @@ public class WinLose : NetworkBehaviour
             else if (_pointCounter.Team1Score < _pointCounter.Team2Score) 
                 WinnerPanelClientRpc(Color.blue, "Blue Team Wins !!!");
             
-            else WinnerPanelClientRpc(Color.black, "Draw !!!");
+            else WinnerPanelClientRpc(Color.white, "Draw !!!");
             
         }
 
@@ -42,5 +42,6 @@ public class WinLose : NetworkBehaviour
         teamWinText.text = text;
         teamWinText.color = color;
         gameEndPanel.SetActive(true);
+        Time.timeScale = 0;
     }
 }
