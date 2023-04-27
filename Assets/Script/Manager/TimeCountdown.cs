@@ -67,8 +67,7 @@ public class TimeCountdown : NetworkBehaviour
 
             if (_timeLeftServer <= 0 && _timeLeftClient <= 0)
             {
-                DisplayTimeClientRpc("Time's Up!");
-                _gameManager.UnDisplayUIClientRpc();
+                DisplayTimeClientRpc(" ");
                 _winLose.WinnerPanelServerRpc();
             }
             DisplayTimeClientRpc(timeText.text);

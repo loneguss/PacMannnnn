@@ -100,18 +100,6 @@ public class GameManager : NetworkBehaviour
     {
         DisplayUIClientRpc();
     }
-    
-    // [ServerRpc]
-    // public void UnDisplayUIServerRpc()
-    // {
-    //     UnDisplayUIClientRpc();
-    // }
-
-    [ClientRpc]
-    public void UnDisplayUIClientRpc()
-    {
-        timeText.SetActive(false);
-    }
 
     #endregion
 
