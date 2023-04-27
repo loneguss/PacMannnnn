@@ -137,7 +137,7 @@ public class Player : NetworkBehaviour
             {
                 grabFlag.IsGrab = false;
                 grabFlag.FlagSprite.enabled = false;
-                Invoke("DeadDelay", 10f);
+                Invoke("DeadDelay", 20f);
                 isDead = false;
             }
 

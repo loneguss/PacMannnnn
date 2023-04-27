@@ -1,5 +1,3 @@
-using System;
-using System.Globalization;
 using TMPro;
 using Unity.Netcode;
 using UnityEngine;
@@ -26,18 +24,14 @@ public class WinLose : NetworkBehaviour
     {
         if (_timeCountdown.CheckTimeOut())
         {
-            if (_pointCounter.Team1Score > _pointCounter.Team2Score)
-            {
+            if (_pointCounter.Team1Score > _pointCounter.Team2Score) 
                 WinnerPanelClientRpc(Color.red, "Red Team Wins !!!");
-            }
-            else if (_pointCounter.Team1Score < _pointCounter.Team2Score)
-            {
+            
+            else if (_pointCounter.Team1Score < _pointCounter.Team2Score) 
                 WinnerPanelClientRpc(Color.blue, "Blue Team Wins !!!");
-            }
-            else
-            {
-                WinnerPanelClientRpc(Color.black, "Draw !!!");
-            }
+            
+            else WinnerPanelClientRpc(Color.black, "Draw !!!");
+            
         }
 
     }
