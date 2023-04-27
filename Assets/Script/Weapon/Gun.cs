@@ -60,20 +60,22 @@ public class Gun : NetworkBehaviour
 
     
     [ServerRpc] 
-    void SpawnBulletServerRpc(string _playerName,string _playerRealName)
+    void SpawnBulletServerRpc(string _playerName,string _playerRealName,  ServerRpcParams serverRpcParams = default)
     {
         Bullet bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation).GetComponent<Bullet>();
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         bullet.ownerName = _playerName;
         bullet.realName = _playerRealName;
-
-
+        var clientId = serverRpcParams.Receive.SenderClientId;
         bullet.GetComponent<NetworkObject>().Spawn(true);
-        Debug.Log(playerName);
-        rb.velocity = firePoint.up * bulletSpeed * Time.deltaTime;
+        shootBullet(bullet, firePoint.up * bulletSpeed * Time.deltaTime);
     }
+
     
-    
+    void shootBullet(Bullet bullet,Vector2 power)
+    {
+        bullet.GetComponent<Rigidbody2D>().velocity = power;
+    }
 
 
     [ClientRpc]

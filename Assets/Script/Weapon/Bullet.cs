@@ -6,7 +6,8 @@ public class Bullet : NetworkBehaviour
 {
     public string ownerName;
     public string realName;
-
+    public GameObject effects;
+    
     [SerializeField] private GameObject impact;
 
     // Start is called before the first frame update
@@ -15,27 +16,37 @@ public class Bullet : NetworkBehaviour
         if (!IsOwner) return;
         SetOwnerServerRpc();
         StartCoroutine(DeleteBullet(2));
+        
     }
 
+
+    Player targetPlayer;
     private void OnCollisionEnter2D(Collision2D col)
-    {
-        Player player = col.gameObject.GetComponent<Player>();
-        
-        if (player != null)
+    { 
+        if(IsServer)
         {
-            if (player.GetPlayerName() == ownerName)
+            Player player = col.gameObject.GetComponent<Player>();
+            targetPlayer = player;
+            if (targetPlayer != null)
             {
-                Debug.Log("same name");
-                return;
+                if (player.GetPlayerName() == ownerName)
+                {
+                    Debug.Log("same name");
+                    return;
+                }
+                
+                SpawnImpactServerRpc(col.transform.position);
+                GetComponent<CircleCollider2D>().enabled = false;
+                effects.SetActive(false);
+                //on player instead
+                //player.Dead();
+                //FindObjectOfType<NetworkFeed>().Feed(realName,NetworkFeed.FeedType.Kill,player.GetPlayerRealName());
+
             }
-            SpawnImpactServerRpc(col.transform.position);
-            player.Dead();
-            StartCoroutine(DeleteBullet(0.01f));
-            FindObjectOfType<NetworkFeed>().Feed(realName,NetworkFeed.FeedType.Kill
-                ,player.GetPlayerRealName());
-            
         }
+
     }
+    
 
     [ServerRpc(RequireOwnership = false)]
     private void SpawnImpactServerRpc(Vector3 pos)
@@ -45,6 +56,13 @@ public class Bullet : NetworkBehaviour
         var _impact = Instantiate(impact, pos, Quaternion.identity);
         _impact.GetComponent<NetworkObject>().Spawn(true);
     }
+
+    public void DeleteBulletNow()
+    {
+        StartCoroutine(DeleteBullet(0.15f));
+
+    }
+
     
     IEnumerator DeleteBullet(float time)
     {

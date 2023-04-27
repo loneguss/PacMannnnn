@@ -184,6 +184,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ownerName: 
+  realName: 
+  effects: {fileID: 5237502010803993272}
   impact: {fileID: 6127666820020743072, guid: 05888bc3ac5e81649a33c20ebc80a5b5, type: 3}
 --- !u!114 &1416245387392168684
 MonoBehaviour:
@@ -412,5 +414,10 @@ PrefabInstance:
 --- !u!4 &5237502010803993253 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4794043405585894024, guid: 37138c0c33167b04fa1fb90b7f5a794f, type: 3}
+  m_PrefabInstance: {fileID: 731981481645043757}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5237502010803993272 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4794043405585894037, guid: 37138c0c33167b04fa1fb90b7f5a794f, type: 3}
   m_PrefabInstance: {fileID: 731981481645043757}
   m_PrefabAsset: {fileID: 0}
