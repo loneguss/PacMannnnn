@@ -37,7 +37,7 @@ public class WinLose : NetworkBehaviour
     }
 
     [ClientRpc]
-    public void WinnerPanelClientRpc(Color color, string text)
+    void WinnerPanelClientRpc(Color color, string text)
     {
         teamWinText.text = text;
         teamWinText.color = color;
