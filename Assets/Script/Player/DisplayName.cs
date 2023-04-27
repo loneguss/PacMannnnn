@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class DisplayName : NetworkBehaviour
 {
-    private void Update()
+    private void FixedUpdate()
     {
         if(!IsOwner) return;
         
