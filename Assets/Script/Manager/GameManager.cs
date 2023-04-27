@@ -91,7 +91,6 @@ public class GameManager : NetworkBehaviour
     [ClientRpc]
     public void DisplayUIClientRpc()
     {
-        scoreTeamText.SetActive(true);
         timeText.SetActive(true);
     }
     
@@ -99,6 +98,18 @@ public class GameManager : NetworkBehaviour
     public void DisplayUIServerRpc()
     {
         DisplayUIClientRpc();
+    }
+    
+    [ServerRpc]
+    public void DisplayScoreServerRpc()
+    {
+        DisplayScoreClientRpc();
+    }
+    
+    [ClientRpc]
+    public void DisplayScoreClientRpc()
+    {
+        scoreTeamText.SetActive(true);
     }
 
     #endregion
