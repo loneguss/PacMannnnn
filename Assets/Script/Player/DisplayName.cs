@@ -7,15 +7,25 @@ using UnityEngine;
 
 public class DisplayName : NetworkBehaviour
 {
-    private void FixedUpdate()
+    public override void OnNetworkSpawn()
     {
-        
         if(!IsOwner) return;
         
+        StartCoroutine(RefreshName(0.2f));
+    }
+
+    IEnumerator RefreshName(float time)
+    {
+        yield return new WaitForSeconds(time);
         string myName = SetPlayerName.Instance.GetName();
         setNameServerRpc(myName);
-        HideName();
+    }
 
+    private void Update()
+    {
+        if(!IsOwner) return;
+
+        HideName();
     }
 
 
