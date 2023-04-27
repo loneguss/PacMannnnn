@@ -62,6 +62,7 @@ public class Bullet : NetworkBehaviour
         StartCoroutine(DeleteBullet(0.15f));
 
     }
+
     
     IEnumerator DeleteBullet(float time)
     {
