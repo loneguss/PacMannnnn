@@ -7,6 +7,12 @@ public class GameManager : NetworkBehaviour
     [Header("UI Elements")]
     [SerializeField] private GameObject scoreTeamText;
     [SerializeField] private GameObject timeText;
+
+    public GameObject TimeText
+    {
+        get => timeText;
+        set => timeText = value;
+    }
     
     [Header("Flag Respawn")]
     [SerializeField] private Transform blueFlagRespawn;
@@ -94,6 +100,18 @@ public class GameManager : NetworkBehaviour
     {
         DisplayUIClientRpc();
     }
+    
+    // [ServerRpc]
+    // public void UnDisplayUIServerRpc()
+    // {
+    //     UnDisplayUIClientRpc();
+    // }
+
+    [ClientRpc]
+    public void UnDisplayUIClientRpc()
+    {
+        timeText.SetActive(false);
+    }
 
     #endregion
 
@@ -131,7 +149,7 @@ public class GameManager : NetworkBehaviour
             Debug.Log(currentPlayer.GetPlayerName());
             
         }
-
+        
         isGame = true;
     }
 

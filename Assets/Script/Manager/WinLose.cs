@@ -48,6 +48,5 @@ public class WinLose : NetworkBehaviour
         teamWinText.text = text;
         teamWinText.color = color;
         gameEndPanel.SetActive(true);
-        Time.timeScale = 0;
     }
 }

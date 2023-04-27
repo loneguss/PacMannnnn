@@ -1,5 +1,6 @@
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Gun : NetworkBehaviour
 {
@@ -13,12 +14,14 @@ public class Gun : NetworkBehaviour
     public float fireRate = 0.5f;
     private float nextFireTime = 0f;
     [SerializeField] private bool isGunActive = false;
-    [SerializeField] private SpriteRenderer gun;
+    public bool IsGunActive { get => isGunActive; set => isGunActive = value; }
+    
+    [SerializeField] private SpriteRenderer gunSprite;
+    public SpriteRenderer GunSprite { get => gunSprite; set => gunSprite = value; }
 
     private void Start()
     {
         if (!IsOwner) return;
-        // RemoveGunServerRpc();
     }
 
     void Update()
@@ -80,13 +83,13 @@ public class Gun : NetworkBehaviour
         if (isGunActive)
         {
             Debug.Log("Remove Gun");
-            gun.enabled = false;
+            gunSprite.enabled = false;
             isGunActive = false;
         }
         else if (!isGunActive)
         {
             Debug.Log("Add Gun");
-            gun.enabled = true;
+            gunSprite.enabled = true;
             isGunActive = true;
         }
     }

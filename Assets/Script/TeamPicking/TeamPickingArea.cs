@@ -31,6 +31,6 @@ public class TeamPickingArea : NetworkBehaviour
         if (!col.transform.CompareTag("Player")) return;
         
         col.gameObject.GetComponent<Player>().SetTeamServerRpc(Player.Team.White);
-        FindObjectOfType<Lobby>().DecrasePlayerInTeamServerRpc(Team);
+        FindObjectOfType<Lobby>().DecreasePlayerInTeamServerRpc(Team);
     }
 }
