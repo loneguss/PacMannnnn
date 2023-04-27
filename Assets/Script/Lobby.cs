@@ -37,7 +37,7 @@ public class Lobby : NetworkBehaviour
         }
         
         lobbyPanel.SetActive(true);
-
+        
 
         if (redTeamPLayer > 0 && blueTeamPLayer > 0)
         {
@@ -115,7 +115,11 @@ public class Lobby : NetworkBehaviour
     {
         FindObjectOfType<GameManager>().StartGameServerRpc();
     }
-
-  
+    
+    [ServerRpc]
+    public void StartButtonServerRpc()
+    {
+        FindObjectOfType<GameManager>().DisplayScoreClientRpc();
+    }
 
 }
