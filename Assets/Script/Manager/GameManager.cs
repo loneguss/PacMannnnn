@@ -7,6 +7,12 @@ public class GameManager : NetworkBehaviour
     [Header("UI Elements")]
     [SerializeField] private GameObject scoreTeamText;
     [SerializeField] private GameObject timeText;
+
+    public GameObject TimeText
+    {
+        get => timeText;
+        set => timeText = value;
+    }
     
     [Header("Flag Respawn")]
     [SerializeField] private Transform blueFlagRespawn;
@@ -45,6 +51,8 @@ public class GameManager : NetworkBehaviour
         }
     }
 
+    #region -Flag Respawn-
+    
     public IEnumerator RedFlagSpawn()
     {
         yield return new WaitForSeconds(2f);
@@ -74,20 +82,11 @@ public class GameManager : NetworkBehaviour
     {
         StartCoroutine(BlueFlagSpawn());
     }
+
+    #endregion
     
-    // [ClientRpc]
-    // public void RedFlagSpawnClientRpc()
-    // {
-    //     StartCoroutine(RedFlagSpawn());
-    // }
-    //
-    // [ClientRpc]
-    // public void BlueFlagSpawnClientRpc()
-    // {
-    //     StartCoroutine(BlueFlagSpawn());
-    // }
-    
-    
+
+    #region -Display UI-
 
     [ClientRpc]
     public void DisplayUIClientRpc()
@@ -102,6 +101,23 @@ public class GameManager : NetworkBehaviour
         DisplayUIClientRpc();
     }
     
+    // [ServerRpc]
+    // public void UnDisplayUIServerRpc()
+    // {
+    //     UnDisplayUIClientRpc();
+    // }
+
+    [ClientRpc]
+    public void UnDisplayUIClientRpc()
+    {
+        timeText.SetActive(false);
+    }
+
+    #endregion
+
+
+    #region -Start Game-
+
     [ServerRpc]
     public void StartGameServerRpc()
     {
@@ -133,9 +149,12 @@ public class GameManager : NetworkBehaviour
             Debug.Log(currentPlayer.GetPlayerName());
             
         }
-
+        
         isGame = true;
     }
+
+    #endregion
+    
 
     public bool GetIsGame()
     {

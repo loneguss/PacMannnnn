@@ -238,7 +238,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6790123531105068656}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -491,6 +491,7 @@ MonoBehaviour:
   firePoint: {fileID: 5269589241628439962}
   bulletPrefab: {fileID: 1798057713223124560, guid: 340abff14c019b44ab33cec456833dad, type: 3}
   playerName: 
+  playerRealName: 
   bulletSpeed: 1500
   fireRate: 0.5
   isGunActive: 0
@@ -526,6 +527,7 @@ MonoBehaviour:
   playerPos: {fileID: 0}
   _playerTeleport: {fileID: 0}
   PlayerName: 
+  PlayerRealName: 
   _team: 2
   playerName: {fileID: 7629675892017995325, guid: b617cba85cda0be4fb33c9d75bfda563, type: 3}
   playerNameObject: {fileID: 0}

@@ -20,7 +20,7 @@ public class Lobby : NetworkBehaviour
     [SerializeField] private Button _startButton;
 
     [SerializeField] private TextMeshPro lobbyInfoText;
-
+    
     private void Start()
     {
         lobbyInfoText.text =
@@ -38,7 +38,7 @@ public class Lobby : NetworkBehaviour
         
         lobbyPanel.SetActive(true);
 
-        
+
         if (redTeamPLayer > 0 && blueTeamPLayer > 0)
         {
             if (redTeamPLayer == blueTeamPLayer)
@@ -77,7 +77,7 @@ public class Lobby : NetworkBehaviour
     }
     
     [ServerRpc]
-    public void DecrasePlayerInTeamServerRpc(Player.Team team)
+    public void DecreasePlayerInTeamServerRpc(Player.Team team)
     {
         switch (team)
         {
