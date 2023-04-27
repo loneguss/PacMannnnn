@@ -15,16 +15,6 @@ public class Flag : NetworkBehaviour
                 DestroyFlagServerRpc();
                 FindObjectOfType<NetworkFeed>().Feed(col.GetComponent<Player>().GetPlayerRealName(), NetworkFeed.FeedType.stoleFlag," ");
              }
-             // else if (col.GetComponent<Player>().GetPlayerTeam() == team && !col.GetComponent<Player>().DeadDelay())
-             // {
-             //     Debug.Log("Get flag back");
-             //     DestroyFlagServerRpc();
-             //     if (col.GetComponent<Player>().GetPlayerTeam() == Player.Team.Red && team == Player.Team.Red)
-             //     {
-             //         FindObjectOfType<GameManager>().RedFlagSpawnServerRpc();
-             //     }
-             //     else FindObjectOfType<GameManager>().BlueFlagSpawnServerRpc();
-             // }
          }
      }
     

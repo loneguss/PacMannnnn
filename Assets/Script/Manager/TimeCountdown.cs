@@ -7,7 +7,7 @@ public class TimeCountdown : NetworkBehaviour
     private GameManager _gameManager;
     private WinLose _winLose;
     [Header("Time")]
-    [SerializeField] private float timeLimit = 600f;
+    [SerializeField] private float timeLimit;
 
     [Header("Time Server")]
     private float _timeLeftServer;
