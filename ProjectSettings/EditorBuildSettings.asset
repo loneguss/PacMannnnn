@@ -5,7 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: Assets/Scenes/FinalMaii.unity
+    guid: 51808b2adf3303c4d95118f009d3f3d5
+  - enabled: 0
+    path: Assets/Scenes/EmoGus.unity
+    guid: 916f56ae9936b024f8bfe980334c7701
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/SadHamster.unity
+    guid: f938f16116757c240a3f3951fa2fe3b2
   m_configObjects: {}
