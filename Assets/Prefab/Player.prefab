@@ -492,7 +492,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1798057713223124560, guid: 340abff14c019b44ab33cec456833dad, type: 3}
   playerName: 
   playerRealName: 
-  bulletSpeed: 1500
+  bulletSpeed: 3000
   fireRate: 0.5
   isGunActive: 0
   gunSprite: {fileID: 6464684974644587419}

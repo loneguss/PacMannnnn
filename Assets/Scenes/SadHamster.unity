@@ -8969,7 +8969,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -251, y: 45.999985}
+  m_AnchoredPosition: {x: -248, y: 45.999985}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &711823583
@@ -8992,7 +8992,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Create Host
+  m_text: Create Room
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -9055,7 +9055,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -20.189484, y: 0, z: -25.127686, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -9813,7 +9813,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_Sprite: {fileID: 1036631263, guid: 555bd3074155cc948a6f5508f27890cb, type: 3}
   m_Color: {r: 0.6603774, g: 0.20426066, b: 0.14017446, a: 1}
   m_FlipX: 0
@@ -14397,6 +14397,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1391189545}
   - component: {fileID: 1391189544}
+  - component: {fileID: 1391189547}
+  - component: {fileID: 1391189546}
   m_Layer: 0
   m_Name: Rock (1)
   m_TagString: Untagged
@@ -14471,6 +14473,110 @@ Transform:
   m_Father: {fileID: 1284127407}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!68 &1391189546
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1391189543}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.6767812, y: -0.35286605}
+  - {x: -0.6767812, y: -0.35286602}
+  - {x: -0.45861658, y: -0.16275282}
+  - {x: -0.20817514, y: -0.1755984}
+  - {x: -0.025379173, y: -0.12931803}
+  - {x: 0.26159543, y: -0.29388827}
+  - {x: 0.5236232, y: -0.3472449}
+  - {x: 0.6969888, y: -0.5274086}
+  - {x: 0.7536167, y: -0.7904779}
+  - {x: 0.61238223, y: -0.9729462}
+  - {x: 0.4916851, y: -1.0108359}
+  - {x: 0.32257554, y: -1.2147155}
+  - {x: -0.31882823, y: -1.3052257}
+  - {x: -0.6174943, y: -1.2273052}
+  - {x: -0.75948733, y: -1.0292921}
+  - {x: -0.9079416, y: -0.96774656}
+  - {x: -1.0864911, y: -0.7706168}
+  - {x: -1.0938458, y: -0.5361383}
+  - {x: -0.89182055, y: -0.3154605}
+  - {x: -0.6743391, y: -0.3420716}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
+--- !u!68 &1391189547
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1391189543}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: 0.8347718, y: 1.564438}
+  - {x: 1.3643415, y: 1.4213382}
+  - {x: 1.6326777, y: 1.4735458}
+  - {x: 2.0173774, y: 1.4342895}
+  - {x: 2.5214791, y: 1.2531834}
+  - {x: 2.7400389, y: 1.2363709}
+  - {x: 3.0898042, y: 1.1353194}
+  - {x: 3.3493924, y: 1.1279675}
+  - {x: 3.6787486, y: 0.970445}
+  - {x: 3.9033115, y: 0.6844388}
+  - {x: 4.0620365, y: 0.29227245}
+  - {x: 4.2894664, y: 0.0595126}
+  - {x: 4.3435545, y: -0.45092142}
+  - {x: 4.085711, y: -1.5713029}
+  - {x: 3.5791616, y: -2.1641777}
+  - {x: 2.615412, y: -2.5253959}
+  - {x: 1.5792484, y: -2.5515478}
+  - {x: 1.3432761, y: -2.4600375}
+  - {x: 0.97451156, y: -2.4789057}
+  - {x: 0.6929991, y: -2.7026808}
+  - {x: 0.123450875, y: -2.7269824}
+  - {x: -0.39012188, y: -2.5802224}
+  - {x: -0.7654534, y: -2.5885966}
+  - {x: -1.152323, y: -2.8436909}
+  - {x: -1.4718361, y: -2.8282948}
+  - {x: -1.7647612, y: -2.930728}
+  - {x: -2.3239543, y: -2.8072915}
+  - {x: -2.662548, y: -2.475705}
+  - {x: -3.0786536, y: -2.3505251}
+  - {x: -3.6721702, y: -2.1737921}
+  - {x: -4.2680917, y: -1.4407321}
+  - {x: -4.3841662, y: -0.59839606}
+  - {x: -4.3902216, y: -0.25495434}
+  - {x: -4.1780896, y: 0.28984594}
+  - {x: -3.840832, y: 0.81845576}
+  - {x: -3.6665356, y: 0.9523628}
+  - {x: -3.4331973, y: 1.0763988}
+  - {x: -3.1357038, y: 1.381744}
+  - {x: -2.791911, y: 1.5474365}
+  - {x: -2.531213, y: 1.5335252}
+  - {x: -2.3932977, y: 1.4688809}
+  - {x: -1.6499108, y: 1.5815066}
+  - {x: -1.0341753, y: 1.3858001}
+  - {x: 0.82738763, y: 1.5669403}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!1 &1391786724
 GameObject:
   m_ObjectHideFlags: 0
@@ -15589,7 +15695,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Enter text...
+  m_text: Enter code...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -16591,7 +16697,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Join Code
+  m_text: Join Room
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -17542,7 +17648,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaab19aa98f6a384485ccf96ff2183d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeLimit: 30
+  timeLimit: 300
   timeText: {fileID: 1335925290}
 --- !u!114 &2029806704
 MonoBehaviour:
@@ -17753,7 +17859,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2108665817}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.19, y: -0.03, z: 0.093606286}
+  m_LocalPosition: {x: -4.19, y: 0, z: 0.093606286}
   m_LocalScale: {x: 0.33825696, y: 0.51161367, z: 0.51161355}
   m_ConstrainProportionsScale: 0
   m_Children: []
