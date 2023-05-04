@@ -80,7 +80,6 @@ public class Player : NetworkBehaviour
         grabFlag = GetComponent<GrabFlag>();
         GetComponent<Gun>().playerRealName = PlayerRealName;
 
-
     }
 
     [ServerRpc]
@@ -111,8 +110,9 @@ public class Player : NetworkBehaviour
                 Debug.Log("same name");
                 return;
             }
-
+            
             Dead();
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             FindObjectOfType<NetworkFeed>().Feed(bullet.realName, NetworkFeed.FeedType.Kill, PlayerRealName);
             bullet.DeleteBulletNow();
 
@@ -120,11 +120,19 @@ public class Player : NetworkBehaviour
     }
 
 
-    public bool DeadDelay()
+        public bool CheckDead()
         {
             if (isDead) return true;
 
             return false;
+        }
+        
+        IEnumerator DeadDelayCoroutine()
+        {
+            yield return new WaitForSeconds(2f);
+            grabFlag.IsGrab = false;
+            grabFlag.FlagSprite.enabled = false;
+            isDead = false;
         }
 
         public void Dead()
@@ -135,10 +143,7 @@ public class Player : NetworkBehaviour
             Debug.Log("U Dead" + PlayerName);
             if (isDead)
             {
-                grabFlag.IsGrab = false;
-                grabFlag.FlagSprite.enabled = false;
-                Invoke("DeadDelay", 20f);
-                isDead = false;
+                StartCoroutine(DeadDelayCoroutine());
             }
 
             
