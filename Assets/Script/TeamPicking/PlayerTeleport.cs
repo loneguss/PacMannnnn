@@ -1,4 +1,3 @@
-
 using Unity.Multiplayer.Samples.Utilities.ClientAuthority;
 using UnityEngine;
 using Unity.Netcode;
